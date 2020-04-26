@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Cart;
-use App\product;
+use App\Product;
 
 class cartController extends Controller
 {
     //
     public function add(Request $res){
        $qty=$res->qty;
-       $id=$res->id; // i am passing quanttiy since id is not working
+       $id=$res->id; 
       
        $data=product::find($id);
       // $price=($data->price)*$qty;

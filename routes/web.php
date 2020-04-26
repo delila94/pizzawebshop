@@ -24,7 +24,7 @@ Route::get('/', function () {
     }
     return view('welcome');
 });
-Route::get('product', function(){ return App\product::all(); });
+Route::get('product', function(){ return App\Product::all(); });
 Route::post('add', 'cartController@add');
 Route::post('total', 'cartController@total');
 /*Route::get('add', function(){

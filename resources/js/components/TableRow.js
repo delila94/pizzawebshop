@@ -15,7 +15,7 @@ class TableRow extends Component {
   }
   handleSubmit(event) {
     event.preventDefault();
-    let uri = MyGlobleSetting.url + `/api/products/${this.props.obj.id}`;
+    let uri = MyGlobleSetting.url + `/product/${this.props.obj.id}`;
     axios.delete(uri);
       browserHistory.push('/display-item');
   }
@@ -24,7 +24,7 @@ class TableRow extends Component {
     return uri;
   }
  
-  
+    
   qty(e) {
     
     e.preventDefault()
