@@ -8,15 +8,7 @@ class OrderCompleted extends Component {
        super(props);
        this.state = {value: '', products: ''};
      }
-     componentDidMount(){
-       axios.get(MyGlobleSetting.url + '/api/products')
-       .then(response => {
-         this.setState({ products: response.data });
-       })
-       .catch(function (error) {
-         console.log(error);
-       })
-     }
+   
    
 
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link, browserHistory } from 'react-router';
 import MyGlobleSetting from './MyGlobleSetting';
-
+import axios from 'axios';
 
 class TableRow extends Component {
   constructor(props) {
@@ -57,6 +57,7 @@ handleSubmit4(e) {
   browserHistory.push('/display-item');
 
 }
+
 componentDidMount(){
   
   axios.get('product')

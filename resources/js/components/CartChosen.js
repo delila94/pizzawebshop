@@ -89,11 +89,17 @@ componentDidMount() {
 </table>
        
 <div>
-       <div><h4>Total price in Dollar:</h4><input type="number"value={this.state.total} ></input>
+    <div>
+       <div><h4>Total price($):</h4><input type="number"value={this.state.total} ></input>
        </div> 
-    <div><h4>Total price in Euro:</h4></div> <input type="number"value={Math.round(this.state.total*0.92)} ></input>
-<br></br>
+    <div><h4>Total price (€):</h4></div> <input type="number"value={Math.round(this.state.total*0.92)} ></input>
+    <div><h4>Total with delivery +10$ ($):</h4></div> <input type="number"value={Math.round((this.state.total+10))} ></input>
+    <div><h4>Total with delivery +10€ (€):</h4></div> <input type="number"value={Math.round(this.state.total*0.92+10)} ></input>
+    </div>
+<div>
+    <br/>
 <div><button className="btn btn-danger" onClick={this.handleSubmit3}>Clear Cart</button></div>
+</div>
 <br></br>
 <h1>Person details</h1>
 <div className="row">
