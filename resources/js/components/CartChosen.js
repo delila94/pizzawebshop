@@ -17,6 +17,7 @@ class CartChosen extends Component {
   handleSubmit3(e) {
     axios.get('clear') ;
     browserHistory.push('/display-item');
+    alert("your cart is empty");
 
 }
 componentDidMount() {
@@ -91,7 +92,8 @@ componentDidMount() {
        <div><h4>Total price in Dollar:</h4><input type="number"value={this.state.total} ></input>
        </div> 
     <div><h4>Total price in Euro:</h4></div> <input type="number"value={Math.round(this.state.total*0.92)} ></input>
-<div><button classNaame="btn btn-danger" onClick={this.handleSubmit3}>Clear Cart</button></div>
+<br></br>
+<div><button className="btn btn-danger" onClick={this.handleSubmit3}>Clear Cart</button></div>
 <br></br>
 <h1>Person details</h1>
 <div className="row">
