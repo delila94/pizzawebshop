@@ -106,11 +106,11 @@ componentDidMount() {
     </div>
     <div className="form-group">
     <label >Last Name</label>
-    <input type="lname" className="form-control" id="exampleInputfName" aria-describedby="emailHelp" placeholder="Enter Last Name"/>
+    <input type="lname" className="form-control" id="exampleInputlName" aria-describedby="emailHelp" placeholder="Enter Last Name"/>
     </div>
 	<div className="form-group">
     <label >Adress</label>
-    <input type="address" className="form-control" id="exampleInputfName" aria-describedby="emailHelp" placeholder="Enter Address"/>
+    <input type="address" className="form-control" id="exampleAddress" aria-describedby="emailHelp" placeholder="Enter Address"/>
     </div>
   <div className="form-group">
     <label >Email address</label>

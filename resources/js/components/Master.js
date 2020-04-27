@@ -7,7 +7,7 @@ class Master extends Component {
     return (
       <div className="container">
    
-   <nav class="navbar navbar-expand-lg ">
+   <nav className="navbar navbar-expand-lg ">
           <div className="container-fluid">
             <div className="navbar-header">
             <ul className="nav navbar-nav">

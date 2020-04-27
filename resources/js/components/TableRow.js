@@ -78,7 +78,7 @@ componentDidMount(){
   render() {
     return (
       
-       <div className="container-fluid content-row">
+       <div className="container">
          
           <form onSubmit={this.handleSubmit3}> 
             <h2>Our pizzas types:</h2>
@@ -86,11 +86,11 @@ componentDidMount(){
              <div className="row justify-content-center">
              {this.state.products.map(data=>
               <div className="col-sm-3">
-             <div class="card mt-2" key={data.id} >
-  <div class="card-body">
-    <h5 class="card-title">{data.title}</h5>
+             <div className="card mb-2" key={data.id} style={{width: "270px"}}  >
+  <div className="card-body">
+    <h5 className="card-title">{data.title}</h5>
     <p>{data.body}</p>
-    <p class="card-text"> Quantity;<input type="number" min="1" max="10"onChange={(e)=> this.qty(e)}></input></p>
+    <p className="card-text"> Quantity:  <input type="number" min="1" max="10" onChange={(e)=> this.qty(e)}></input></p>
      
     <button type="submit"  className="btn btn-primary" onClick={(e)=>this.handleSubmit3(e,data.id)}>Add to Cart</button>
     </div>
