@@ -20,6 +20,10 @@ class CartChosen extends Component {
     alert("your cart is empty");
 
 }
+handleSubmitC(e) {
+    axios.get('clear') ;
+
+}
 componentDidMount() {
   axios.get('myCart') 
   .then(response => {
@@ -40,8 +44,38 @@ componentDidMount() {
     console.log(error);
   })
 }
-  
+qtyCart(e) {
+    
+    e.preventDefault()
 
+      console.log(e.target.value);
+      this.setState({qty:e.target.value});
+   
+      
+    
+  }
+  handleSubmitCart(e,id) {
+
+    e.preventDefault();
+  axios.post('changeme',{qty:this.state.qty,
+    id:id})
+    .then(res=> {console.log(res.data); } );
+    alert("ccc");
+  
+   
+}
+handleSubmitRemove(id) {
+
+  axios.post('remove',{id:id})
+    .then(res=> {console.log(res.data); } );
+    alert("Pizza removed from cart!");
+    window.location.reload();
+  
+   
+}
+  
+//  <input style={{margin: "10px"}} type="number" min="1" max="10" onChange={(e)=> this.qtyCart(e)}></input>
+    
 //<input value={data.id} type="number" onChange={(e)=> this.id(e)}></input>
 //  <button type="submit"  className="btn btn-secondary" >Add to Cart</button>
   render() {
@@ -51,18 +85,19 @@ componentDidMount() {
           <div>
                 <h2>Your order:</h2>
       
-       
+                <form onChange={this.handleSubmit}>
         <table className="table table-hover">
             
   <thead>
       
     <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Pizza Name</th>
-      <th scope="col">Pizza Price $</th>
-      <th scope="col">Quantity</th>
-      <th scope="col">Total $:</th>
-      <th scope="col">Total €:</th>
+      <th scope="col"style={{width: "10%"}}>ID</th>
+      <th scope="col"style={{width: "10%"}}>Pizza Name</th>
+      <th scope="col"style={{width: "10%"}}>Pizza Price $</th>
+      <th scope="col" style={{width: "10%"}}>Quantity</th>
+      <th scope="col" style={{width: "10%"}}>Total $:</th>
+      <th scope="col" style={{width: "10%"}}>Total €:</th>
+      <th scope="col" style={{width: "20%"}}>Remove:</th>
     </tr>
   </thead>
   {this.state.products.map(data=>
@@ -82,12 +117,17 @@ componentDidMount() {
       
       <td>{data.quantity*data.price}</td>
       <td>{Math.round(data.quantity*data.price*0.92)}</td>
+      <td>
+      <button type="button" onClick={(e)=>this.handleSubmitRemove(data.id)} className="btn btn-danger">Remove</button>
+          
+       
+      </td>
  
     
   </tbody>
   )}
 </table>
-       
+      </form>   
 <div>
     <div>
        <div><h4>Total price($):</h4><input type="number"value={this.state.total} ></input>
@@ -127,7 +167,7 @@ componentDidMount() {
     <label >Phone Number:</label>
     <input type="number" className="form-control" id="exampleInputPhone" placeholder="Phone Number"/>
   </div>
-    <button className="btn btn-dark"><Link to="order-completed">Comlplete order</Link></button>
+    <button className="btn btn-dark" onClick={this.handleSubmitC}><Link to="order-completed">Comlplete order</Link></button>
               
 </form>      
     </div> 

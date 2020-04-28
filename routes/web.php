@@ -61,6 +61,7 @@ Route::get('total', function(){
    Route::get('cart', 'cartController@myCart');
    Route::get('myCart','cartController@myCartR');
    Route::get('clear','cartController@clearCart');
+   Route::post('remove','cartController@removeCart');
 
 /*Route::view('/orderCompleted','orderCompleted');*/
 Auth::routes();

@@ -73650,7 +73650,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 //  <Route path="/add-item" component={CreateProduct} />
 
 Object(react_dom__WEBPACK_IMPORTED_MODULE_1__["render"])( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_2__["Router"], {
-  history: react_router__WEBPACK_IMPORTED_MODULE_2__["browserHistory"]
+  history: react_router__WEBPACK_IMPORTED_MODULE_2__["hashHistory"]
 }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_2__["Route"], {
   path: "/",
   component: _components_Master__WEBPACK_IMPORTED_MODULE_4__["default"]
@@ -73797,6 +73797,11 @@ var CartChosen = /*#__PURE__*/function (_Component) {
       alert("your cart is empty");
     }
   }, {
+    key: "handleSubmitC",
+    value: function handleSubmitC(e) {
+      axios.get('clear');
+    }
+  }, {
     key: "componentDidMount",
     value: function componentDidMount() {
       var _this2 = this;
@@ -73815,29 +73820,95 @@ var CartChosen = /*#__PURE__*/function (_Component) {
       })["catch"](function (error) {
         console.log(error);
       });
-    } //<input value={data.id} type="number" onChange={(e)=> this.id(e)}></input>
+    }
+  }, {
+    key: "qtyCart",
+    value: function qtyCart(e) {
+      e.preventDefault();
+      console.log(e.target.value);
+      this.setState({
+        qty: e.target.value
+      });
+    }
+  }, {
+    key: "handleSubmitCart",
+    value: function handleSubmitCart(e, id) {
+      e.preventDefault();
+      axios.post('changeme', {
+        qty: this.state.qty,
+        id: id
+      }).then(function (res) {
+        console.log(res.data);
+      });
+      alert("ccc");
+    }
+  }, {
+    key: "handleSubmitRemove",
+    value: function handleSubmitRemove(id) {
+      axios.post('remove', {
+        id: id
+      }).then(function (res) {
+        console.log(res.data);
+      });
+      alert("Pizza removed from cart!");
+      window.location.reload();
+    } //  <input style={{margin: "10px"}} type="number" min="1" max="10" onChange={(e)=> this.qtyCart(e)}></input>
+    //<input value={data.id} type="number" onChange={(e)=> this.id(e)}></input>
     //  <button type="submit"  className="btn btn-secondary" >Add to Cart</button>
 
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Your order:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
+      var _this3 = this;
+
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Your order:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        onChange: this.handleSubmit
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
         className: "table table-hover"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
-        scope: "col"
+        scope: "col",
+        style: {
+          width: "10%"
+        }
       }, "ID"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
-        scope: "col"
+        scope: "col",
+        style: {
+          width: "10%"
+        }
       }, "Pizza Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
-        scope: "col"
+        scope: "col",
+        style: {
+          width: "10%"
+        }
       }, "Pizza Price $"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
-        scope: "col"
+        scope: "col",
+        style: {
+          width: "10%"
+        }
       }, "Quantity"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
-        scope: "col"
+        scope: "col",
+        style: {
+          width: "10%"
+        }
       }, "Total $:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
-        scope: "col"
-      }, "Total \u20AC:"))), this.state.products.map(function (data) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, data.id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, data.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, data.price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, data.quantity), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, data.quantity * data.price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, Math.round(data.quantity * data.price * 0.92)));
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Total price($):"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        scope: "col",
+        style: {
+          width: "10%"
+        }
+      }, "Total \u20AC:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
+        scope: "col",
+        style: {
+          width: "20%"
+        }
+      }, "Remove:"))), this.state.products.map(function (data) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, data.id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, data.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, data.price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, data.quantity), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, data.quantity * data.price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, Math.round(data.quantity * data.price * 0.92)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          type: "button",
+          onClick: function onClick(e) {
+            return _this3.handleSubmitRemove(data.id);
+          },
+          className: "btn btn-danger"
+        }, "Remove")));
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Total price($):"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "number",
         value: this.state.total
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Total price (\u20AC):")), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -73901,7 +73972,8 @@ var CartChosen = /*#__PURE__*/function (_Component) {
         id: "exampleInputPhone",
         placeholder: "Phone Number"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "btn btn-dark"
+        className: "btn btn-dark",
+        onClick: this.handleSubmitC
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "order-completed"
       }, "Comlplete order")))));
@@ -74225,7 +74297,16 @@ var OrderCompleted = /*#__PURE__*/function (_Component) {
         className: "container justify-content-md-center"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row justify-content-md-center"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Order successfully completed!"))));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Order successfully completed!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col text-center"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "btn btn-success btn-lg"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+        to: "/",
+        style: {
+          color: "white"
+        }
+      }, "Home")))));
     }
   }]);
 

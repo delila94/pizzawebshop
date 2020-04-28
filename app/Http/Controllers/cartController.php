@@ -31,6 +31,18 @@ class cartController extends Controller
     
         }*/
       }
+
+      public function removeCart(Request $res){
+        $id=$res->id; 
+        $data=product::find($id);
+        $remove=   Cart::remove($id);
+        if($remove){
+         return Cart::getContent();
+        }
+       }
+
+
+
       public function total(){
       $total = Cart::getTotal();
     }

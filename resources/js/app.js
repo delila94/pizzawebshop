@@ -9,7 +9,7 @@ require('./bootstrap');
 /***************************************/
 import React from 'react';
 import { render } from 'react-dom';
-import { Router, Route, browserHistory } from 'react-router';
+import { Router, Route, hashHistory } from 'react-router';
 import 'bootstrap/dist/css/bootstrap.css';
 
 import Master from './components/Master';
@@ -21,7 +21,7 @@ import CartChosen from './components/CartChosen';
 //import cart from './resources/views/cart';
 //  <Route path="/add-item" component={CreateProduct} />
 render(
-  <Router history={browserHistory}>
+  <Router history={hashHistory}>
       <Route path="/" component={Master} >
         <Route path="/display-item" component={TableRow} />
         <Route path="/order-completed" component={OrderCompleted} />
