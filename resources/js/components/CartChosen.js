@@ -151,7 +151,7 @@ handleSubmitRemove(id) {
     <label >Phone Number:</label>
     <input type="number" className="form-control" id="exampleInputPhone" placeholder="Phone Number"/>
   </div>
-    <button className="btn btn-dark" onClick={this.handleSubmitC}><Link to="order-completed">Comlplete order</Link></button>
+    <button className="btn btn-dark" onClick={this.handleSubmitC}><Link style={{color:"white"}} to="order-completed">Complete order</Link></button>
               
 </form>      
     </div> 

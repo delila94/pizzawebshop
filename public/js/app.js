@@ -73727,6 +73727,134 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
+/***/ "./resources/js/components sync recursive ^\\.\\/.*\\.jpg$":
+/*!****************************************************!*\
+  !*** ./resources/js/components sync ^\.\/.*\.jpg$ ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"./0.jpg": "./resources/js/components/0.jpg",
+	"./1.jpg": "./resources/js/components/1.jpg",
+	"./2.jpg": "./resources/js/components/2.jpg",
+	"./3.jpg": "./resources/js/components/3.jpg",
+	"./4.jpg": "./resources/js/components/4.jpg",
+	"./5.jpg": "./resources/js/components/5.jpg",
+	"./6.jpg": "./resources/js/components/6.jpg",
+	"./7.jpg": "./resources/js/components/7.jpg"
+};
+
+
+function webpackContext(req) {
+	var id = webpackContextResolve(req);
+	return __webpack_require__(id);
+}
+function webpackContextResolve(req) {
+	if(!__webpack_require__.o(map, req)) {
+		var e = new Error("Cannot find module '" + req + "'");
+		e.code = 'MODULE_NOT_FOUND';
+		throw e;
+	}
+	return map[req];
+}
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = "./resources/js/components sync recursive ^\\.\\/.*\\.jpg$";
+
+/***/ }),
+
+/***/ "./resources/js/components/0.jpg":
+/*!***************************************!*\
+  !*** ./resources/js/components/0.jpg ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/0.jpg?94fb894248b9753594d455b350c0bb0d";
+
+/***/ }),
+
+/***/ "./resources/js/components/1.jpg":
+/*!***************************************!*\
+  !*** ./resources/js/components/1.jpg ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/1.jpg?14f44f182c54a9ecb8d7a813f302d5b4";
+
+/***/ }),
+
+/***/ "./resources/js/components/2.jpg":
+/*!***************************************!*\
+  !*** ./resources/js/components/2.jpg ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/2.jpg?c57aeb00d8e1ccf757a9ff9acc8adfe8";
+
+/***/ }),
+
+/***/ "./resources/js/components/3.jpg":
+/*!***************************************!*\
+  !*** ./resources/js/components/3.jpg ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/3.jpg?b7c8e67acada1f3e8a948918a52810f8";
+
+/***/ }),
+
+/***/ "./resources/js/components/4.jpg":
+/*!***************************************!*\
+  !*** ./resources/js/components/4.jpg ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/4.jpg?374b9380f759cdf730dd3169e2a464d0";
+
+/***/ }),
+
+/***/ "./resources/js/components/5.jpg":
+/*!***************************************!*\
+  !*** ./resources/js/components/5.jpg ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/5.jpg?ed1f8dfbd3e4ad382c444e4180d9e1e2";
+
+/***/ }),
+
+/***/ "./resources/js/components/6.jpg":
+/*!***************************************!*\
+  !*** ./resources/js/components/6.jpg ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/6.jpg?d07f35a9e8122993b0e891d34efbf88a";
+
+/***/ }),
+
+/***/ "./resources/js/components/7.jpg":
+/*!***************************************!*\
+  !*** ./resources/js/components/7.jpg ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/7.jpg?2668b717bfacca14a9a9efdd1cdd2f66";
+
+/***/ }),
+
 /***/ "./resources/js/components/CartChosen.js":
 /*!***********************************************!*\
   !*** ./resources/js/components/CartChosen.js ***!
@@ -73968,8 +74096,11 @@ var CartChosen = /*#__PURE__*/function (_Component) {
         className: "btn btn-dark",
         onClick: this.handleSubmitC
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        style: {
+          color: "white"
+        },
         to: "order-completed"
-      }, "Comlplete order")))));
+      }, "Complete order")))));
     }
   }]);
 
@@ -74322,9 +74453,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/es/index.js");
-/* harmony import */ var _MyGlobleSetting__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./MyGlobleSetting */ "./resources/js/components/MyGlobleSetting.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -74351,7 +74481,6 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-
 var TableRow = /*#__PURE__*/function (_Component) {
   _inherits(TableRow, _Component);
 
@@ -74372,10 +74501,20 @@ var TableRow = /*#__PURE__*/function (_Component) {
     _this.handleSubmit3 = _this.handleSubmit3.bind(_assertThisInitialized(_this));
     _this.qty = _this.qty.bind(_assertThisInitialized(_this));
     _this.id = _this.id.bind(_assertThisInitialized(_this));
+    _this.importAll = _this.importAll.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(TableRow, [{
+    key: "importAll",
+    value: function importAll(r) {
+      var images = {};
+      r.keys().map(function (item, index) {
+        images[item.replace('./', '')] = r(item);
+      });
+      return images;
+    }
+  }, {
     key: "qty",
     value: function qty(e) {
       e.preventDefault(); //  console.log(e.target.value);
@@ -74397,7 +74536,7 @@ var TableRow = /*#__PURE__*/function (_Component) {
     key: "handleSubmit3",
     value: function handleSubmit3(e, id) {
       e.preventDefault();
-      axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('add', {
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('add', {
         qty: this.state.qty,
         id: id
       }).then(function (res) {
@@ -74410,7 +74549,7 @@ var TableRow = /*#__PURE__*/function (_Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('product').then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get('product').then(function (response) {
         _this2.setState({
           products: response.data
         });
@@ -74422,12 +74561,26 @@ var TableRow = /*#__PURE__*/function (_Component) {
          <a href="http://localhost:8000/cart">Proceed to check out</a>
          </button>*/
     // <input type="text" value={if(this.state.total==0)></input>
+    //  <img src={pizza}></img>
 
   }, {
     key: "render",
     value: function render() {
       var _this3 = this;
 
+      var array = ["4", "1", "2", "3", "0", "5", "6", "7"];
+      var images = array.map(function (image) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          key: image,
+          src: __webpack_require__("./resources/js/components sync recursive ^\\.\\/.*\\.jpg$")("./".concat(image, ".jpg")),
+          style: {
+            width: "300px",
+            height: "210px"
+          },
+          alt: "",
+          className: "img-responsive"
+        });
+      });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
@@ -74436,16 +74589,19 @@ var TableRow = /*#__PURE__*/function (_Component) {
         className: "row justify-content-center"
       }, this.state.products.map(function (data, mykey) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "col-sm-3",
+          className: "col-sm-4",
           key: mykey
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "card mb-2",
+          className: "card mb-4 ml-2 mr-2",
           style: {
-            width: "270px"
+            width: "320px"
           }
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "card-body"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "card-img-top",
+          alt: "Card image cap"
+        }, images[mykey]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "card-body justify-content-center "
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
           className: "card-title"
         }, data.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, data.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
           className: "card-text"
@@ -74468,6 +74624,9 @@ var TableRow = /*#__PURE__*/function (_Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "btn btn-dark"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        style: {
+          color: "white"
+        },
         to: "cartChosen"
       }, "Proceed to Check Out")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)));
     }

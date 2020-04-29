@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link, browserHistory } from 'react-router';
-import MyGlobleSetting from './MyGlobleSetting';
 import axios from 'axios';
 
 class TableRow extends Component {
@@ -10,9 +9,14 @@ class TableRow extends Component {
       this.handleSubmit3 = this.handleSubmit3.bind(this);
       this.qty = this.qty.bind(this);
      this.id = this.id.bind(this);
+     this.importAll = this.importAll.bind(this);
   }
  
-
+   importAll(r) {
+    let images = {};
+    r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
+    return images;
+}
   qty(e) {
     
     e.preventDefault()
@@ -54,9 +58,14 @@ componentDidMount(){
      <a href="http://localhost:8000/cart">Proceed to check out</a>
      </button>*/
      // <input type="text" value={if(this.state.total==0)></input>
-     
+     //  <img src={pizza}></img>
 
   render() {
+    let array = ["4", "1", "2", "3", "0", "5", "6", "7"];
+
+    let images = array.map(image => {
+       return <img key={image} src={require(`./${image}.jpg`)} style={{width:"300px", height:"210px"}} alt="" className="img-responsive" />
+    });
     return (
       
        <div className="container">
@@ -66,17 +75,18 @@ componentDidMount(){
 
              <div className="row justify-content-center">
              {this.state.products.map((data,mykey)=>
-              <div className="col-sm-3"  key={mykey}>
-             <div className="card mb-2" style={{width: "270px"}}  >
-  <div className="card-body">
-    <h5 className="card-title">{data.title}</h5>
+              <div className="col-sm-4"  key={mykey}>
+             <div className="card mb-4 ml-2 mr-2" style={{width: "320px"}}  >
+             <p className="card-img-top" alt="Card image cap" >{ images[mykey] }</p>
+  <div className="card-body justify-content-center ">
+    <h4 className="card-title">{data.title}</h4>
     <p>{data.body}</p>
     <p className="card-text"> Quantity:  <input type="number" min="1" max="10" onChange={(e)=> this.qty(e)}></input></p>
-     
     <button type="submit"  className="btn btn-primary" onClick={(e)=>this.handleSubmit3(e,data.id)}>Add to Cart</button>
     </div>
     </div>
     </div>
+    
 )}
 
 
@@ -84,7 +94,7 @@ componentDidMount(){
 </form>
      <div className="row justify-content-center">
 
-     <button className="btn btn-dark"><Link to="cartChosen">Proceed to Check Out</Link></button><br></br>
+     <button className="btn btn-dark"><Link style={{color:"white"}} to="cartChosen">Proceed to Check Out</Link></button><br></br>
  
      </div>
      

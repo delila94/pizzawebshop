@@ -75,5 +75,7 @@ public function clearCart()
     if($clear){
        return Cart::getContent();
     }
-    }
 }
+
+}
+
