@@ -1,27 +1,19 @@
 import React, { Component } from 'react';
 import { Link, browserHistory } from 'react-router';
-import MyGlobleSetting from './MyGlobleSetting';
 
 
 class CartChosen extends Component {
   constructor(props) {
       super(props);
-      this.state={products:[],total:'' }
-     // this.handleSubmit = this.handleSubmit.bind(this);
-     // this.handleSubmit2 = this.handleSubmit2.bind(this);
-      this.handleSubmit3 = this.handleSubmit3.bind(this);
-   //   this.qty = this.qty.bind(this);
-   //  this.id = this.id.bind(this);
+      this.state={products:[],total:'',qty:'' }
+      this.handleSubmitC = this.handleSubmitC.bind(this);
+      this.handleSubmitRemove = this.handleSubmitRemove.bind(this);
+      this.updateCart = this.updateCart.bind(this);
   }
   
-  handleSubmit3(e) {
-    axios.get('clear') ;
-    browserHistory.push('/display-item');
-    alert("your cart is empty");
-
-}
 handleSubmitC(e) {
     axios.get('clear') ;
+    window.location.reload();
 
 }
 componentDidMount() {
@@ -35,35 +27,24 @@ componentDidMount() {
     console.log(error);
   })
   axios.get('total') 
-  .then(response => {
+  .then(responseT => {
      
-    this.setState({ total: response.data});
+    this.setState({ total: responseT.data});
 
   })
   .catch(function (error) {
     console.log(error);
   })
 }
-qtyCart(e) {
-    
-    e.preventDefault()
+updateCart(id,qty) {
+       this.setState({qty:qty,id:id});
 
-      console.log(e.target.value);
-      this.setState({qty:e.target.value});
+       axios.post('update',{qty:qty,
+        id:id})
+        .then(res=> {console.log(res.data); } );
+        window.location.reload();
    
-      
-    
   }
-  handleSubmitCart(e,id) {
-
-    e.preventDefault();
-  axios.post('changeme',{qty:this.state.qty,
-    id:id})
-    .then(res=> {console.log(res.data); } );
-    alert("ccc");
-  
-   
-}
 handleSubmitRemove(id) {
 
   axios.post('remove',{id:id})
@@ -75,9 +56,6 @@ handleSubmitRemove(id) {
 }
   
 //  <input style={{margin: "10px"}} type="number" min="1" max="10" onChange={(e)=> this.qtyCart(e)}></input>
-    
-//<input value={data.id} type="number" onChange={(e)=> this.id(e)}></input>
-//  <button type="submit"  className="btn btn-secondary" >Add to Cart</button>
   render() {
     return (
       
@@ -85,23 +63,26 @@ handleSubmitRemove(id) {
           <div>
                 <h2>Your order:</h2>
       
-                <form onChange={this.handleSubmit}>
+  
         <table className="table table-hover">
             
   <thead>
       
     <tr>
       <th scope="col"style={{width: "10%"}}>ID</th>
-      <th scope="col"style={{width: "10%"}}>Pizza Name</th>
-      <th scope="col"style={{width: "10%"}}>Pizza Price $</th>
+      <th scope="col"style={{width: "10%"}}>Name</th>
+      <th scope="col"style={{width: "10%"}}>Price $</th>
       <th scope="col" style={{width: "10%"}}>Quantity</th>
       <th scope="col" style={{width: "10%"}}>Total $:</th>
       <th scope="col" style={{width: "10%"}}>Total €:</th>
       <th scope="col" style={{width: "20%"}}>Remove:</th>
+      <th scope="col" style={{width: "20%"}}>Change Quantity:</th>
     </tr>
   </thead>
-  {this.state.products.map(data=>
-  <tbody>
+
+  {this.state.products.map((data,mykey)=>
+    <tbody key={mykey}>
+  <tr>
       <td>{data.id}</td>
 
  
@@ -116,29 +97,32 @@ handleSubmitRemove(id) {
  
       
       <td>{data.quantity*data.price}</td>
-      <td>{Math.round(data.quantity*data.price*0.92)}</td>
+      <td>{Math.floor(data.quantity*data.price*0.92 * 100) / 100 }</td>
       <td>
       <button type="button" onClick={(e)=>this.handleSubmitRemove(data.id)} className="btn btn-danger">Remove</button>
-          
-       
       </td>
- 
+
+      <td>
+       <button  style={{margin: "3px"}}  type="button" onClick={(e)=> this.updateCart(data.id,1)}>+</button>
+       <button  style={{margin: "3px"}} disabled={data.quantity==1} type="button" onClick={(e)=> this.updateCart(data.id,-1)}>-</button>
+      </td>
     
-  </tbody>
+      </tr>
+      </tbody>
   )}
+
 </table>
-      </form>   
+      
 <div>
     <div>
-       <div><h4>Total price($):</h4><input type="number"value={this.state.total} ></input>
-       </div> 
-    <div><h4>Total price (€):</h4></div> <input type="number"value={Math.round(this.state.total*0.92)} ></input>
-    <div><h4>Total with delivery +10$ ($):</h4></div> <input type="number"value={Math.round((this.state.total+10))} ></input>
-    <div><h4>Total with delivery +10€ (€):</h4></div> <input type="number"value={Math.round(this.state.total*0.92+10)} ></input>
+       <div><h4>Total price: {this.state.total}$</h4> </div>
+       <div><h4>Total price: {Math.floor(this.state.total*0.92 * 100) / 100}€</h4> </div>
+       <div><h4>Total with delivery +10$: {this.state.total+10}$</h4></div>
+       <div><h4>Total with delivery +10€: {Math.floor((this.state.total*0.92+10) * 100) / 100}€</h4></div>
     </div>
 <div>
     <br/>
-<div><button className="btn btn-danger" onClick={this.handleSubmit3}>Clear Cart</button></div>
+<div><button className="btn btn-danger" onClick={this.handleSubmitC}>Clear Cart</button></div>
 </div>
 <br></br>
 <h1>Person details</h1>

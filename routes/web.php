@@ -44,24 +44,15 @@ Route::post('total', 'cartController@total');
   
   
   });*/
-/*Route::get('cart', function(){  
-    return Cart:: getContent();
-});*/
+
 Route::get('total', function(){  
     return Cart:: getTotal();
 });
-/*Route::get('clear', function(){
-    $clear = Cart::clear();
-   
-    if($clear){
-       return Cart::getContent();
-    }
-   });*/
-  
    Route::get('cart', 'cartController@myCart');
    Route::get('myCart','cartController@myCartR');
    Route::get('clear','cartController@clearCart');
    Route::post('remove','cartController@removeCart');
+   Route::post('update', 'cartController@updateCart');
 
 /*Route::view('/orderCompleted','orderCompleted');*/
 Auth::routes();

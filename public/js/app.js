@@ -73739,7 +73739,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/es/index.js");
-/* harmony import */ var _MyGlobleSetting__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./MyGlobleSetting */ "./resources/js/components/MyGlobleSetting.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -73765,7 +73764,6 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-
 var CartChosen = /*#__PURE__*/function (_Component) {
   _inherits(CartChosen, _Component);
 
@@ -73779,27 +73777,20 @@ var CartChosen = /*#__PURE__*/function (_Component) {
     _this = _super.call(this, props);
     _this.state = {
       products: [],
-      total: ''
-    }; // this.handleSubmit = this.handleSubmit.bind(this);
-    // this.handleSubmit2 = this.handleSubmit2.bind(this);
-
-    _this.handleSubmit3 = _this.handleSubmit3.bind(_assertThisInitialized(_this)); //   this.qty = this.qty.bind(this);
-    //  this.id = this.id.bind(this);
-
+      total: '',
+      qty: ''
+    };
+    _this.handleSubmitC = _this.handleSubmitC.bind(_assertThisInitialized(_this));
+    _this.handleSubmitRemove = _this.handleSubmitRemove.bind(_assertThisInitialized(_this));
+    _this.updateCart = _this.updateCart.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(CartChosen, [{
-    key: "handleSubmit3",
-    value: function handleSubmit3(e) {
-      axios.get('clear');
-      react_router__WEBPACK_IMPORTED_MODULE_1__["browserHistory"].push('/display-item');
-      alert("your cart is empty");
-    }
-  }, {
     key: "handleSubmitC",
     value: function handleSubmitC(e) {
       axios.get('clear');
+      window.location.reload();
     }
   }, {
     key: "componentDidMount",
@@ -73813,34 +73804,28 @@ var CartChosen = /*#__PURE__*/function (_Component) {
       })["catch"](function (error) {
         console.log(error);
       });
-      axios.get('total').then(function (response) {
+      axios.get('total').then(function (responseT) {
         _this2.setState({
-          total: response.data
+          total: responseT.data
         });
       })["catch"](function (error) {
         console.log(error);
       });
     }
   }, {
-    key: "qtyCart",
-    value: function qtyCart(e) {
-      e.preventDefault();
-      console.log(e.target.value);
+    key: "updateCart",
+    value: function updateCart(id, qty) {
       this.setState({
-        qty: e.target.value
+        qty: qty,
+        id: id
       });
-    }
-  }, {
-    key: "handleSubmitCart",
-    value: function handleSubmitCart(e, id) {
-      e.preventDefault();
-      axios.post('changeme', {
-        qty: this.state.qty,
+      axios.post('update', {
+        qty: qty,
         id: id
       }).then(function (res) {
         console.log(res.data);
       });
-      alert("ccc");
+      window.location.reload();
     }
   }, {
     key: "handleSubmitRemove",
@@ -73853,17 +73838,13 @@ var CartChosen = /*#__PURE__*/function (_Component) {
       alert("Pizza removed from cart!");
       window.location.reload();
     } //  <input style={{margin: "10px"}} type="number" min="1" max="10" onChange={(e)=> this.qtyCart(e)}></input>
-    //<input value={data.id} type="number" onChange={(e)=> this.id(e)}></input>
-    //  <button type="submit"  className="btn btn-secondary" >Add to Cart</button>
 
   }, {
     key: "render",
     value: function render() {
       var _this3 = this;
 
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Your order:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        onChange: this.handleSubmit
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Your order:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
         className: "table table-hover"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
         scope: "col",
@@ -73875,12 +73856,12 @@ var CartChosen = /*#__PURE__*/function (_Component) {
         style: {
           width: "10%"
         }
-      }, "Pizza Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
+      }, "Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
         scope: "col",
         style: {
           width: "10%"
         }
-      }, "Pizza Price $"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
+      }, "Price $"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
         scope: "col",
         style: {
           width: "10%"
@@ -73900,29 +73881,41 @@ var CartChosen = /*#__PURE__*/function (_Component) {
         style: {
           width: "20%"
         }
-      }, "Remove:"))), this.state.products.map(function (data) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, data.id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, data.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, data.price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, data.quantity), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, data.quantity * data.price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, Math.round(data.quantity * data.price * 0.92)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, "Remove:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
+        scope: "col",
+        style: {
+          width: "20%"
+        }
+      }, "Change Quantity:"))), this.state.products.map(function (data, mykey) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", {
+          key: mykey
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, data.id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, data.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, data.price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, data.quantity), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, data.quantity * data.price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, Math.floor(data.quantity * data.price * 0.92 * 100) / 100), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           type: "button",
           onClick: function onClick(e) {
             return _this3.handleSubmitRemove(data.id);
           },
           className: "btn btn-danger"
-        }, "Remove")));
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Total price($):"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "number",
-        value: this.state.total
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Total price (\u20AC):")), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "number",
-        value: Math.round(this.state.total * 0.92)
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Total with delivery +10$ ($):")), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "number",
-        value: Math.round(this.state.total + 10)
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Total with delivery +10\u20AC (\u20AC):")), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "number",
-        value: Math.round(this.state.total * 0.92 + 10)
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        }, "Remove")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          style: {
+            margin: "3px"
+          },
+          type: "button",
+          onClick: function onClick(e) {
+            return _this3.updateCart(data.id, 1);
+          }
+        }, "+"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          style: {
+            margin: "3px"
+          },
+          disabled: data.quantity == 1,
+          type: "button",
+          onClick: function onClick(e) {
+            return _this3.updateCart(data.id, -1);
+          }
+        }, "-"))));
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Total price: ", this.state.total, "$"), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Total price: ", Math.floor(this.state.total * 0.92 * 100) / 100, "\u20AC"), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Total with delivery +10$: ", this.state.total + 10, "$")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Total with delivery +10\u20AC: ", Math.floor((this.state.total * 0.92 + 10) * 100) / 100, "\u20AC"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "btn btn-danger",
-        onClick: this.handleSubmit3
+        onClick: this.handleSubmitC
       }, "Clear Cart"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Person details"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -74376,8 +74369,6 @@ var TableRow = /*#__PURE__*/function (_Component) {
       id: '',
       cart: []
     };
-    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
-    _this.handleSubmit2 = _this.handleSubmit2.bind(_assertThisInitialized(_this));
     _this.handleSubmit3 = _this.handleSubmit3.bind(_assertThisInitialized(_this));
     _this.qty = _this.qty.bind(_assertThisInitialized(_this));
     _this.id = _this.id.bind(_assertThisInitialized(_this));
@@ -74385,24 +74376,10 @@ var TableRow = /*#__PURE__*/function (_Component) {
   }
 
   _createClass(TableRow, [{
-    key: "handleSubmit",
-    value: function handleSubmit(event) {
-      event.preventDefault();
-      var uri = _MyGlobleSetting__WEBPACK_IMPORTED_MODULE_2__["default"].url + "/product/".concat(this.props.obj.id);
-      axios__WEBPACK_IMPORTED_MODULE_3___default.a["delete"](uri);
-      react_router__WEBPACK_IMPORTED_MODULE_1__["browserHistory"].push('/display-item');
-    }
-  }, {
-    key: "handleSubmit2",
-    value: function handleSubmit2() {
-      var uri = _MyGlobleSetting__WEBPACK_IMPORTED_MODULE_2__["default"].url + '/cart';
-      return uri;
-    }
-  }, {
     key: "qty",
     value: function qty(e) {
-      e.preventDefault();
-      console.log(e.target.value);
+      e.preventDefault(); //  console.log(e.target.value);
+
       this.setState({
         qty: e.target.value
       });
@@ -74410,8 +74387,8 @@ var TableRow = /*#__PURE__*/function (_Component) {
   }, {
     key: "id",
     value: function id(e) {
-      e.preventDefault();
-      console.log(e.target.value);
+      e.preventDefault(); //   console.log(e.target.value);
+
       this.setState({
         id: e.target.value
       });
@@ -74427,12 +74404,6 @@ var TableRow = /*#__PURE__*/function (_Component) {
         console.log(res.data);
       });
       alert("Pizza added to cart!");
-    }
-  }, {
-    key: "handleSubmit4",
-    value: function handleSubmit4(e) {
-      axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('clear');
-      react_router__WEBPACK_IMPORTED_MODULE_1__["browserHistory"].push('/display-item');
     }
   }, {
     key: "componentDidMount",
@@ -74463,12 +74434,12 @@ var TableRow = /*#__PURE__*/function (_Component) {
         onSubmit: this.handleSubmit3
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Our pizzas types:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row justify-content-center"
-      }, this.state.products.map(function (data) {
+      }, this.state.products.map(function (data, mykey) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "col-sm-3"
+          className: "col-sm-3",
+          key: mykey
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "card mb-2",
-          key: data.id,
           style: {
             width: "270px"
           }

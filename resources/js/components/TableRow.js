@@ -7,21 +7,9 @@ class TableRow extends Component {
   constructor(props) {
       super(props);
       this.state={qty:'',products:[],id:'',cart:[]}
-      this.handleSubmit = this.handleSubmit.bind(this);
-      this.handleSubmit2 = this.handleSubmit2.bind(this);
       this.handleSubmit3 = this.handleSubmit3.bind(this);
       this.qty = this.qty.bind(this);
      this.id = this.id.bind(this);
-  }
-  handleSubmit(event) {
-    event.preventDefault();
-    let uri = MyGlobleSetting.url + `/product/${this.props.obj.id}`;
-    axios.delete(uri);
-      browserHistory.push('/display-item');
-  }
-  handleSubmit2() {
-    let uri = MyGlobleSetting.url + '/cart';
-    return uri;
   }
  
 
@@ -29,16 +17,14 @@ class TableRow extends Component {
     
     e.preventDefault()
 
-      console.log(e.target.value);
-      this.setState({qty:e.target.value});
-   
-      
+     //  console.log(e.target.value);
+      this.setState({qty:e.target.value});  
     
   }
   id(e) {
     e.preventDefault()
 
-      console.log(e.target.value);
+    //   console.log(e.target.value);
       this.setState({id:e.target.value});
     
   }
@@ -49,13 +35,7 @@ class TableRow extends Component {
     id:id})
     .then(res=> {console.log(res.data); } );
     alert("Pizza added to cart!");
-  
    
-}
-handleSubmit4(e) {
-  axios.get('clear') ;
-  browserHistory.push('/display-item');
-
 }
 
 componentDidMount(){
@@ -85,9 +65,9 @@ componentDidMount(){
             <h2>Our pizzas types:</h2>
 
              <div className="row justify-content-center">
-             {this.state.products.map(data=>
-              <div className="col-sm-3">
-             <div className="card mb-2" key={data.id} style={{width: "270px"}}  >
+             {this.state.products.map((data,mykey)=>
+              <div className="col-sm-3"  key={mykey}>
+             <div className="card mb-2" style={{width: "270px"}}  >
   <div className="card-body">
     <h5 className="card-title">{data.title}</h5>
     <p>{data.body}</p>

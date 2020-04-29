@@ -41,7 +41,19 @@ class cartController extends Controller
         }
        }
 
+public function updateCart (Request $res)
+{
+    $qty=$res->qty;
+       $id=$res->id; 
+      
+       $data=product::find($id);
+       $change=   Cart:: update($id,[
+        'quantity' => $qty,
+       
+    ]);
+        return Cart::getContent();
 
+}
 
       public function total(){
       $total = Cart::getTotal();
