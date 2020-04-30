@@ -64,7 +64,6 @@ updateCart(id,qty) {
 
        axios.post('update',{qty:qty,
         id:id})
-        this.setState({qty:qty,id:id});
         window.location.reload();
       
    

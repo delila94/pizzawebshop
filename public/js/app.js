@@ -73697,10 +73697,6 @@ var CartChosen = /*#__PURE__*/function (_Component) {
         qty: qty,
         id: id
       });
-      this.setState({
-        qty: qty,
-        id: id
-      });
       window.location.reload();
     }
   }, {
