@@ -58,8 +58,9 @@ handleSubmitRemove(id) {
 
   axios.post('remove',{id:id})
     .then(res=> {console.log(res.data); } );
-    alert("Pizza removed from cart!");
     window.location.reload();
+    alert("Pizza removed from cart!");
+  
   
    
 }
