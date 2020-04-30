@@ -73695,14 +73695,14 @@ var CartChosen = /*#__PURE__*/function (_Component) {
     }
   }, {
     key: "handleSubmitRemove",
-    value: function handleSubmitRemove(id) {
+    value: function handleSubmitRemove(id, e) {
+      e.preventDefault();
       axios.post('remove', {
         id: id
       }).then(function (res) {
         console.log(res.data);
       });
-      alert("Pizza removed from cart!");
-      window.location.reload();
+      window.location.reload(true);
     }
   }, {
     key: "render",
@@ -73733,7 +73733,7 @@ var CartChosen = /*#__PURE__*/function (_Component) {
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, data.id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, data.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, data.price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, data.quantity), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, data.quantity * data.price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, Math.floor(data.quantity * data.price * 0.92 * 100) / 100), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           type: "button",
           onClick: function onClick(e) {
-            return _this3.handleSubmitRemove(data.id);
+            return _this3.handleSubmitRemove(data.id, e);
           },
           className: "btn btn-danger"
         }, "Remove")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
