@@ -62,20 +62,37 @@ componentDidMount() {
 }
 updateCart(id,qty) {
 
-       axios.post('update',{qty:qty,
-        id:id})
-        window.location.reload();
+        axios.post('update',{qty:qty,id:id})
+    .then(res=> {
+        console.log(res.data)
+        this.setState({products: Object.values(res.data) }); } );
+        axios.get('total') 
+        .then(responseT => {
+           
+          this.setState({ total: responseT.data});
+      
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
       
    
   }
 handleSubmitRemove(id) {
   axios.post('remove',{id:id})
-    .then(res=> {console.log(res.data); } );
-   
-    alert("Pizza removed from cart!");
-    window.location.reload();
-  
-   
+    .then(res=> {
+        
+        this.setState({products: Object.values(res.data) }); } );
+        
+        axios.get('total') 
+        .then(responseT => {
+           
+          this.setState({ total: responseT.data});
+      
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
 }
   
   render() {

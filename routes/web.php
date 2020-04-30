@@ -48,7 +48,7 @@ Route::get('total', function(){
    Route::get('clear','cartController@clearCart');
    Route::post('remove','cartController@removeCart');
    Route::post('update', 'cartController@updateCart');
-
+   Route::get('remove','cartController@removeCart');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

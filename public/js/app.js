@@ -73693,27 +73693,50 @@ var CartChosen = /*#__PURE__*/function (_Component) {
   }, {
     key: "updateCart",
     value: function updateCart(id, qty) {
+      var _this3 = this;
+
       axios.post('update', {
         qty: qty,
         id: id
+      }).then(function (res) {
+        console.log(res.data);
+
+        _this3.setState({
+          products: Object.values(res.data)
+        });
       });
-      window.location.reload();
+      axios.get('total').then(function (responseT) {
+        _this3.setState({
+          total: responseT.data
+        });
+      })["catch"](function (error) {
+        console.log(error);
+      });
     }
   }, {
     key: "handleSubmitRemove",
     value: function handleSubmitRemove(id) {
+      var _this4 = this;
+
       axios.post('remove', {
         id: id
       }).then(function (res) {
-        console.log(res.data);
+        _this4.setState({
+          products: Object.values(res.data)
+        });
       });
-      alert("Pizza removed from cart!");
-      window.location.reload();
+      axios.get('total').then(function (responseT) {
+        _this4.setState({
+          total: responseT.data
+        });
+      })["catch"](function (error) {
+        console.log(error);
+      });
     }
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this5 = this;
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Your order:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
         className: "table table-hover table-responsive{-sm|-md|-lg|-xl}"
@@ -73739,7 +73762,7 @@ var CartChosen = /*#__PURE__*/function (_Component) {
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, data.id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, data.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, data.price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, data.quantity), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, data.quantity * data.price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, Math.floor(data.quantity * data.price * 0.92 * 100) / 100), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           type: "button",
           onClick: function onClick(e) {
-            return _this3.handleSubmitRemove(data.id);
+            return _this5.handleSubmitRemove(data.id);
           },
           className: "btn btn-danger"
         }, "Remove")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -73749,7 +73772,7 @@ var CartChosen = /*#__PURE__*/function (_Component) {
           className: "btn btn-secondary",
           type: "button",
           onClick: function onClick(e) {
-            return _this3.updateCart(data.id, 1);
+            return _this5.updateCart(data.id, 1);
           }
         }, "+"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           style: {
@@ -73759,7 +73782,7 @@ var CartChosen = /*#__PURE__*/function (_Component) {
           disabled: data.quantity == 1,
           type: "button",
           onClick: function onClick(e) {
-            return _this3.updateCart(data.id, -1);
+            return _this5.updateCart(data.id, -1);
           }
         }, "-"))));
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Total price: ", this.state.total, "$"), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Total price: ", Math.floor(this.state.total * 0.92 * 100) / 100, "\u20AC"), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Total with delivery +10$: ", this.state.total + 10, "$")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Total with delivery +10\u20AC: ", Math.floor((this.state.total * 0.92 + 10) * 100) / 100, "\u20AC"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -74300,7 +74323,7 @@ var TableRow = /*#__PURE__*/function (_Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      qty: '',
+      qty: '1',
       products: [],
       id: '',
       cart: []
@@ -74401,6 +74424,14 @@ var TableRow = /*#__PURE__*/function (_Component) {
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
           className: "card-title"
         }, data.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, data.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          style: {
+            fontWeight: "bold"
+          }
+        }, "Price:", data.price, "$ "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          style: {
+            fontWeight: "bold"
+          }
+        }, "Price:", Math.floor(data.price * 0.92 * 100) / 100, "\u20AC "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
           className: "card-text"
         }, " Quantity:  ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
           type: "number",
