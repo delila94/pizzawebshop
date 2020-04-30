@@ -68,11 +68,12 @@ updateCart(id,qty) {
         window.location.reload();
    
   }
-handleSubmitRemove(id) {
+handleSubmitRemove(id,e) {
+    e.preventDefault();
   axios.post('remove',{id:id})
     .then(res=> {console.log(res.data); } );
     alert("Pizza removed from cart!");
-    window.location.reload(true);
+ // window.location.reload(true);
   
    
 }
@@ -120,7 +121,7 @@ handleSubmitRemove(id) {
       <td>{data.quantity*data.price}</td>
       <td>{Math.floor(data.quantity*data.price*0.92 * 100) / 100 }</td>
       <td>
-      <button type="button" onClick={(e)=>this.handleSubmitRemove(data.id)} className="btn btn-danger">Remove</button>
+      <button type="button" onClick={(e)=>this.handleSubmitRemove(data.id,e)} className="btn btn-danger">Remove</button>
       </td>
 
       <td>
