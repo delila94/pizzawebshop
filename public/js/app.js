@@ -73641,6 +73641,7 @@ var CartChosen = /*#__PURE__*/function (_Component) {
       totalN: ''
     };
     _this.handleSubmitC = _this.handleSubmitC.bind(_assertThisInitialized(_this));
+    _this.handleSubmitClear = _this.handleSubmitClear.bind(_assertThisInitialized(_this));
     _this.handleSubmitRemove = _this.handleSubmitRemove.bind(_assertThisInitialized(_this));
     _this.updateCart = _this.updateCart.bind(_assertThisInitialized(_this));
     return _this;
@@ -73656,6 +73657,17 @@ var CartChosen = /*#__PURE__*/function (_Component) {
       } else {
         e.preventDefault();
         alert("Your cart is empty! Please choose something to continue.");
+      }
+    }
+  }, {
+    key: "handleSubmitClear",
+    value: function handleSubmitClear(e) {
+      if (this.state.total != 0) {
+        axios.get('clear');
+        window.location.reload();
+      } else {
+        e.preventDefault();
+        alert("Your cart is already empty!");
       }
     }
   }, {
@@ -73758,7 +73770,7 @@ var CartChosen = /*#__PURE__*/function (_Component) {
         }, "-"))));
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Total price: ", this.state.total, "$"), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Total price: ", Math.floor(this.state.total * 0.92 * 100) / 100, "\u20AC"), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Total with delivery +10$: ", this.state.total + 10, "$")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Total with delivery +10\u20AC: ", Math.floor((this.state.total * 0.92 + 10) * 100) / 100, "\u20AC"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "btn btn-danger",
-        onClick: this.handleSubmitC
+        onClick: this.handleSubmitClear
       }, "Clear Cart"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Person details"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -74302,18 +74314,14 @@ var TableRow = /*#__PURE__*/function (_Component) {
     _this.handleSubmit3 = _this.handleSubmit3.bind(_assertThisInitialized(_this));
     _this.qty = _this.qty.bind(_assertThisInitialized(_this));
     _this.id = _this.id.bind(_assertThisInitialized(_this));
-    _this.importAll = _this.importAll.bind(_assertThisInitialized(_this));
+    _this.handleGo = _this.handleGo.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(TableRow, [{
-    key: "importAll",
-    value: function importAll(r) {
-      var images = {};
-      r.keys().map(function (item, index) {
-        images[item.replace('./', '')] = r(item);
-      });
-      return images;
+    key: "handleGo",
+    value: function handleGo(e) {
+      react_router__WEBPACK_IMPORTED_MODULE_1__["hashHistory"].push('/cartChosen');
     }
   }, {
     key: "qty",
@@ -74417,13 +74425,15 @@ var TableRow = /*#__PURE__*/function (_Component) {
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row justify-content-center"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "btn btn-dark"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        className: "btn btn-dark",
+        type: "button",
         style: {
           color: "white"
         },
-        to: "cartChosen"
-      }, "Proceed to Check Out")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)));
+        onClick: function onClick(e) {
+          return _this3.handleGo();
+        }
+      }, "Proceed to Check Out"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)));
     }
   }]);
 

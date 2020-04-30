@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, browserHistory } from 'react-router';
+import { Link, hashHistory } from 'react-router';
 import axios from 'axios';
 
 class TableRow extends Component {
@@ -9,14 +9,19 @@ class TableRow extends Component {
       this.handleSubmit3 = this.handleSubmit3.bind(this);
       this.qty = this.qty.bind(this);
      this.id = this.id.bind(this);
-     this.importAll = this.importAll.bind(this);
+     this.handleGo = this.handleGo.bind(this);
+     
   }
+  handleGo(e) {
+   
+    
+    hashHistory.push('/cartChosen');
+   
+   
  
-   importAll(r) {
-    let images = {};
-    r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
-    return images;
-}
+ }
+ 
+  
   qty(e) {
     
     e.preventDefault()
@@ -51,6 +56,7 @@ componentDidMount(){
   .catch(function (error) {
     console.log(error);
   })
+  
 
 }
 
@@ -89,7 +95,7 @@ componentDidMount(){
 </form>
      <div className="row justify-content-center">
 
-     <button className="btn btn-dark"><Link style={{color:"white"}} to="cartChosen">Proceed to Check Out</Link></button><br></br>
+     <button className="btn btn-dark" type="button" style={{color:"white"}} onClick={(e)=>this.handleGo()}>Proceed to Check Out</button><br></br>
  
      </div>
      

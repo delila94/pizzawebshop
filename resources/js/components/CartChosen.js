@@ -7,6 +7,7 @@ class CartChosen extends Component {
       super(props);
       this.state={products:[],total:'',qty:'',totalN:'' }
       this.handleSubmitC = this.handleSubmitC.bind(this);
+      this.handleSubmitClear = this.handleSubmitClear.bind(this);
       this.handleSubmitRemove = this.handleSubmitRemove.bind(this);
       this.updateCart = this.updateCart.bind(this);
   }
@@ -25,6 +26,19 @@ handleSubmitC(e) {
    }
 
 }
+handleSubmitClear(e) {
+   
+    if(this.state.total!=0){
+   axios.get('clear') ;
+   window.location.reload();
+    }
+    else
+    {
+     e.preventDefault();
+        alert("Your cart is already empty!")
+    }
+ 
+ }
 componentDidMount() {
   axios.get('myCart') 
   .then(response => {
@@ -129,7 +143,7 @@ handleSubmitRemove(id) {
     </div>
 <div>
     <br/>
-<div><button className="btn btn-danger" onClick={this.handleSubmitC}>Clear Cart</button></div>
+<div><button className="btn btn-danger" onClick={this.handleSubmitClear}>Clear Cart</button></div>
 </div>
 <br></br>
 <h1>Person details</h1>
