@@ -77,5 +77,6 @@ public function clearCart()
     }
 }
 
+
 }
 

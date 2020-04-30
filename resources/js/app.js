@@ -17,19 +17,20 @@ import OrderCompleted from './components/OrderCompleted';
 import DisplayChosenProducts from './components/DisplayChosenProducts';
 import TableRow from './components/TableRow';
 import CartChosen from './components/CartChosen';
+import HomePizza from './components/HomePizza';
 
 //import cart from './resources/views/cart';
 //  <Route path="/add-item" component={CreateProduct} />
 render(
   <Router history={hashHistory}>
-      <Route path="/" component={Master} >
+      <Route path="/master" component={Master} >
+      <Route path="/" component={HomePizza} />
         <Route path="/display-item" component={TableRow} />
         <Route path="/order-completed" component={OrderCompleted} />
         <Route path="/display-chosen-products" component={DisplayChosenProducts} />
         <Route path="/cartChosen" component={CartChosen} />
- 
        
- 
+       
       
       </Route>
     </Router>,

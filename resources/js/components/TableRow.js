@@ -54,17 +54,12 @@ componentDidMount(){
 
 }
 
-/* <button className="btn-btn-secondary">
-     <a href="http://localhost:8000/cart">Proceed to check out</a>
-     </button>*/
-     // <input type="text" value={if(this.state.total==0)></input>
-     //  <img src={pizza}></img>
 
   render() {
     let array = ["4", "1", "2", "3", "0", "5", "6", "7"];
 
     let images = array.map(image => {
-       return <img key={image} src={require(`./${image}.jpg`)} style={{width:"300px", height:"210px"}} alt="" className="img-responsive" />
+       return <img key={image} src={require(`./${image}.jpg`)} style={{width:"100%", height:"auto"}} alt="" className="img-responsive" />
     });
     return (
       
@@ -75,7 +70,7 @@ componentDidMount(){
 
              <div className="row justify-content-center">
              {this.state.products.map((data,mykey)=>
-              <div className="col-sm-4"  key={mykey}>
+              <div className="col-lg 6 col-md-6 col-sm-12 col-xs-12"  key={mykey}>
              <div className="card mb-4 ml-2 mr-2" style={{width: "320px"}}  >
              <p className="card-img-top" alt="Card image cap" >{ images[mykey] }</p>
   <div className="card-body justify-content-center ">

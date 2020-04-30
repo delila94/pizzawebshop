@@ -1,19 +1,28 @@
 import React, { Component } from 'react';
-import { Link, browserHistory } from 'react-router';
+import { Link, hashHistory } from 'react-router';
 
 
 class CartChosen extends Component {
   constructor(props) {
       super(props);
-      this.state={products:[],total:'',qty:'' }
+      this.state={products:[],total:'',qty:'',totalN:'' }
       this.handleSubmitC = this.handleSubmitC.bind(this);
       this.handleSubmitRemove = this.handleSubmitRemove.bind(this);
       this.updateCart = this.updateCart.bind(this);
   }
   
 handleSubmitC(e) {
-    axios.get('clear') ;
-    window.location.reload();
+   
+   if(this.state.total!=0){
+  axios.get('clear') ;
+   hashHistory.push('/order-completed');
+   e.preventDefault();
+   }
+   else
+   {
+    e.preventDefault();
+       alert("Your cart is empty! Please choose something to continue.")
+   }
 
 }
 componentDidMount() {
@@ -55,7 +64,6 @@ handleSubmitRemove(id) {
    
 }
   
-//  <input style={{margin: "10px"}} type="number" min="1" max="10" onChange={(e)=> this.qtyCart(e)}></input>
   render() {
     return (
       
@@ -64,19 +72,19 @@ handleSubmitRemove(id) {
                 <h2>Your order:</h2>
       
   
-        <table className="table table-hover">
+        <table className="table table-hover table-responsive{-sm|-md|-lg|-xl}">
             
   <thead>
       
     <tr>
-      <th scope="col"style={{width: "10%"}}>ID</th>
-      <th scope="col"style={{width: "10%"}}>Name</th>
-      <th scope="col"style={{width: "10%"}}>Price $</th>
-      <th scope="col" style={{width: "10%"}}>Quantity</th>
-      <th scope="col" style={{width: "10%"}}>Total $:</th>
-      <th scope="col" style={{width: "10%"}}>Total €:</th>
-      <th scope="col" style={{width: "20%"}}>Remove:</th>
-      <th scope="col" style={{width: "20%"}}>Change Quantity:</th>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Price $</th>
+      <th scope="col" >Quantity</th>
+      <th scope="col">Total $:</th>
+      <th scope="col">Total €:</th>
+      <th scope="col" >Remove:</th>
+      <th scope="col" >Change Quantity:</th>
     </tr>
   </thead>
 
@@ -103,8 +111,8 @@ handleSubmitRemove(id) {
       </td>
 
       <td>
-       <button  style={{margin: "3px"}}  type="button" onClick={(e)=> this.updateCart(data.id,1)}>+</button>
-       <button  style={{margin: "3px"}} disabled={data.quantity==1} type="button" onClick={(e)=> this.updateCart(data.id,-1)}>-</button>
+       <button  style={{margin: "3px"}} className="btn btn-secondary" type="button" onClick={(e)=> this.updateCart(data.id,1)}>+</button>
+       <button  style={{margin: "3px"}} className="btn btn-secondary" disabled={data.quantity==1} type="button" onClick={(e)=> this.updateCart(data.id,-1)}>-</button>
       </td>
     
       </tr>
@@ -151,7 +159,7 @@ handleSubmitRemove(id) {
     <label >Phone Number:</label>
     <input type="number" className="form-control" id="exampleInputPhone" placeholder="Phone Number"/>
   </div>
-    <button className="btn btn-dark" onClick={this.handleSubmitC}><Link style={{color:"white"}} to="order-completed">Complete order</Link></button>
+    <button type="button" className="btn btn-dark" onClick={this.handleSubmitC}>Complete Your Order</button>
               
 </form>      
     </div> 
