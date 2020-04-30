@@ -73693,15 +73693,13 @@ var CartChosen = /*#__PURE__*/function (_Component) {
   }, {
     key: "updateCart",
     value: function updateCart(id, qty) {
-      this.setState({
-        qty: qty,
-        id: id
-      });
       axios.post('update', {
         qty: qty,
         id: id
-      }).then(function (res) {
-        console.log(res.data);
+      });
+      this.setState({
+        qty: qty,
+        id: id
       });
       window.location.reload();
     }
@@ -73714,7 +73712,7 @@ var CartChosen = /*#__PURE__*/function (_Component) {
         console.log(res.data);
       });
       alert("Pizza removed from cart!");
-      window.location.reload(true);
+      window.location.reload();
     }
   }, {
     key: "render",

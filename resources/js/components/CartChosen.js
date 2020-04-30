@@ -40,6 +40,7 @@ handleSubmitClear(e) {
  
  }
 componentDidMount() {
+  
   axios.get('myCart') 
   .then(response => {
 
@@ -60,19 +61,20 @@ componentDidMount() {
   })
 }
 updateCart(id,qty) {
-       this.setState({qty:qty,id:id});
 
        axios.post('update',{qty:qty,
         id:id})
-        .then(res=> {console.log(res.data); } );
+        this.setState({qty:qty,id:id});
         window.location.reload();
+      
    
   }
 handleSubmitRemove(id) {
   axios.post('remove',{id:id})
     .then(res=> {console.log(res.data); } );
+   
     alert("Pizza removed from cart!");
-window.location.reload(true);
+    window.location.reload();
   
    
 }

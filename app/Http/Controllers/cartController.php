@@ -51,8 +51,10 @@ public function updateCart (Request $res)
         'quantity' => $qty,
        
     ]);
+    if($change)
+    {
         return Cart::getContent();
-
+    }
 }
 
       public function total(){

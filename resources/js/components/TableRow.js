@@ -14,9 +14,8 @@ class TableRow extends Component {
   }
   handleGo(e) {
    
-    
     hashHistory.push('/cartChosen');
-   
+    
    
  
  }
