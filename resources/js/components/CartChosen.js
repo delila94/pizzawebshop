@@ -103,7 +103,7 @@ handleSubmitRemove(id)
   
   render() {
     return (
- <div>
+ <div style={{marginLeft:"15px",marginRight:"15px"}}>
     <h2>Your order:</h2>
     <table className="table table-hover table-responsive{-sm|-md|-lg|-xl}">          
     <thead>
@@ -156,10 +156,10 @@ handleSubmitRemove(id)
 <br/>
 
 <h1>Person details</h1>
-<div className="row">
+<div className="row" >
   <div className="col-md-10"></div>
 </div>
-<form onSubmit={this.handleSubmit}>
+<form onSubmit={this.handleSubmit} >
 <div className="form-group">
     <label >First Name</label>
     <input type="fname" className="form-control" id="exampleInputfName" aria-describedby="emailHelp" placeholder="Enter First Name"/>

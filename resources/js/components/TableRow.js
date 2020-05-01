@@ -58,7 +58,7 @@ componentDidMount()
     return (
       
   <div className="container">
-      <h2>Our pizzas types:</h2>
+      <h2 style={{margin:"10px"}}>Our pizzas types:</h2>
       <div className="row justify-content-center mb-5">
             <button className="btn btn-dark btn-lg" type="button" style={{color:"white"}} onClick={(e)=>this.handleGo()}>See Your Cart</button>
       </div>

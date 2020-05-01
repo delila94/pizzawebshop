@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
 import { Router, Route, Link } from 'react-router';
 
-// <img src={ require('./pizza1.jpg') } />
 class Master extends Component {
   render(){
     return (
-      <div className="container">
+      <div >
   
 <nav className="navbar navbar-expand-lg navbar-light bg-primary">
   <a className="navbar-brand" style={{color:"white"}} href="/">Pizza Yummi</a>
