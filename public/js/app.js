@@ -73374,8 +73374,6 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
 
- //import cart from './resources/views/cart';
-//  <Route path="/add-item" component={CreateProduct} />
 
 Object(react_dom__WEBPACK_IMPORTED_MODULE_1__["render"])( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_2__["Router"], {
   history: react_router__WEBPACK_IMPORTED_MODULE_2__["hashHistory"]
@@ -73637,8 +73635,7 @@ var CartChosen = /*#__PURE__*/function (_Component) {
     _this.state = {
       products: [],
       total: '',
-      qty: '',
-      totalN: ''
+      qty: ''
     };
     _this.handleSubmitC = _this.handleSubmitC.bind(_assertThisInitialized(_this));
     _this.handleSubmitClear = _this.handleSubmitClear.bind(_assertThisInitialized(_this));
@@ -73785,10 +73782,13 @@ var CartChosen = /*#__PURE__*/function (_Component) {
             return _this5.updateCart(data.id, -1);
           }
         }, "-"))));
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Total price: ", this.state.total, "$"), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Total price: ", Math.floor(this.state.total * 0.92 * 100) / 100, "\u20AC"), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Total with delivery +10$: ", this.state.total + 10, "$")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Total with delivery +10\u20AC: ", Math.floor((this.state.total * 0.92 + 10) * 100) / 100, "\u20AC"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Total price: ", this.state.total, "$"), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Total price: ", Math.floor(this.state.total * 0.92 * 100) / 100, "\u20AC"), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Total with delivery +10$: ", this.state.total + 10, "$")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Total with delivery +10\u20AC: ", Math.floor((this.state.total * 0.92 + 10) * 100) / 100, "\u20AC"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "btn btn-danger",
-        onClick: this.handleSubmitClear
-      }, "Clear Cart"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Person details"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        onClick: this.handleSubmitClear,
+        syle: {
+          margin: "6px"
+        }
+      }, "Clear Cart")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Person details"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-md-10"
@@ -74343,8 +74343,7 @@ var TableRow = /*#__PURE__*/function (_Component) {
   }, {
     key: "qty",
     value: function qty(e) {
-      e.preventDefault(); //  console.log(e.target.value);
-
+      e.preventDefault();
       this.setState({
         qty: e.target.value
       });
@@ -74352,8 +74351,7 @@ var TableRow = /*#__PURE__*/function (_Component) {
   }, {
     key: "id",
     value: function id(e) {
-      e.preventDefault(); //   console.log(e.target.value);
-
+      e.preventDefault();
       this.setState({
         id: e.target.value
       });
@@ -74403,9 +74401,18 @@ var TableRow = /*#__PURE__*/function (_Component) {
       });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        onSubmit: this.handleSubmit3
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Our pizzas types:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row justify-content-center mb-5"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "btn btn-dark btn-lg",
+        type: "button",
+        style: {
+          color: "white"
+        },
+        onClick: function onClick(e) {
+          return _this3.handleGo();
+        }
+      }, "See Your Cart")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row justify-content-center"
       }, this.state.products.map(function (data, mykey) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -74417,22 +74424,29 @@ var TableRow = /*#__PURE__*/function (_Component) {
             width: "320px"
           }
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-          className: "card-img-top",
+          className: "card-img-top ",
           alt: "Card image cap"
         }, images[mykey]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "card-body justify-content-center "
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
-          className: "card-title"
-        }, data.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, data.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "card-body  "
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+          className: "card-title row justify-content-center",
+          style: {
+            fontWeight: "bold"
+          }
+        }, data.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "row justify-content-center"
+        }, data.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "row justify-content-center",
           style: {
             fontWeight: "bold"
           }
         }, "Price:", data.price, "$ "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "row justify-content-center",
           style: {
             fontWeight: "bold"
           }
         }, "Price:", Math.floor(data.price * 0.92 * 100) / 100, "\u20AC "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-          className: "card-text"
+          className: "card-text row justify-content-center"
         }, " Quantity:  ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
           type: "number",
           min: "1",
@@ -74440,25 +74454,16 @@ var TableRow = /*#__PURE__*/function (_Component) {
           onChange: function onChange(e) {
             return _this3.qty(e);
           }
-        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row justify-content-center"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           type: "submit",
           className: "btn btn-primary",
           onClick: function onClick(e) {
             return _this3.handleSubmit3(e, data.id);
           }
-        }, "Add to Cart"))));
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "row justify-content-center"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "btn btn-dark",
-        type: "button",
-        style: {
-          color: "white"
-        },
-        onClick: function onClick(e) {
-          return _this3.handleGo();
-        }
-      }, "Proceed to Check Out"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)));
+        }, "Add to Cart")))));
+      })));
     }
   }]);
 

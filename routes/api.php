@@ -17,19 +17,3 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-//Route::resource('products', 'ProductController');
-/*Route::post('add', 'cartController@add');
-Route::get('cart', function(){  
-
-
-    return Cart::getContent();
-
-
-});
-Route::get('clear', function(){
-    $clear = Cart::clear();
-   
-    if($clear){
-       return Cart::getContent();
-    }
-   });*/

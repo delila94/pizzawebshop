@@ -27,19 +27,6 @@ Route::get('/', function () {
 Route::get('product', function(){ return App\Product::all(); });
 Route::post('add', 'cartController@add');
 Route::post('total', 'cartController@total');
-/*Route::get('add', function(){
-
-    $add =  Cart::add([
-          'id'=>2,
-          'name'=>'sdbh dnd ',
-          'price' =>350,
-          'quantity' => 2,
-    ]);
-      if($add){
-          return Cart::getContent();
-      }
-  });*/
-
 Route::get('total', function(){  
     return Cart:: getTotal();
 });
@@ -51,8 +38,5 @@ Route::get('total', function(){
    Route::get('remove','cartController@removeCart');
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');

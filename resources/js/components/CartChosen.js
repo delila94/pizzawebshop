@@ -5,42 +5,45 @@ import { Link, hashHistory } from 'react-router';
 class CartChosen extends Component {
   constructor(props) {
       super(props);
-      this.state={products:[],total:'',qty:'',totalN:'' }
+      this.state={products:[],total:'',qty:'' }
       this.handleSubmitC = this.handleSubmitC.bind(this);
       this.handleSubmitClear = this.handleSubmitClear.bind(this);
       this.handleSubmitRemove = this.handleSubmitRemove.bind(this);
       this.updateCart = this.updateCart.bind(this);
   }
   
-handleSubmitC(e) {
-   
-   if(this.state.total!=0){
-  axios.get('clear') ;
-   hashHistory.push('/order-completed');
-   e.preventDefault();
+handleSubmitC(e)
+ {
+   if(this.state.total!=0)
+   {
+     axios.get('clear') ;
+     hashHistory.push('/order-completed');
+     e.preventDefault();
    }
    else
    {
-    e.preventDefault();
-       alert("Your cart is empty! Please choose something to continue.")
+     e.preventDefault();
+     alert("Your cart is empty! Please choose something to continue.")
    }
 
 }
-handleSubmitClear(e) {
-   
-    if(this.state.total!=0){
-   axios.get('clear') ;
-   window.location.reload();
+handleSubmitClear(e) 
+{
+    if(this.state.total!=0)
+    {
+      axios.get('clear') ;
+      window.location.reload();
     }
     else
     {
      e.preventDefault();
-        alert("Your cart is already empty!")
+    alert("Your cart is already empty!")
     }
  
  }
-componentDidMount() {
-  
+
+componentDidMount() 
+{
   axios.get('myCart') 
   .then(response => {
 
@@ -50,6 +53,7 @@ componentDidMount() {
   .catch(function (error) {
     console.log(error);
   })
+
   axios.get('total') 
   .then(responseT => {
      
@@ -60,16 +64,17 @@ componentDidMount() {
     console.log(error);
   })
 }
-updateCart(id,qty) {
+updateCart(id,qty) 
+{
 
-        axios.post('update',{qty:qty,id:id})
+    axios.post('update',{qty:qty,id:id})
     .then(res=> {
-        console.log(res.data)
-        this.setState({products: Object.values(res.data) }); } );
-        axios.get('total') 
-        .then(responseT => {
+     console.log(res.data)
+    this.setState({products: Object.values(res.data) }); } );
+    axios.get('total') 
+     .then(responseT => {
            
-          this.setState({ total: responseT.data});
+     this.setState({ total: responseT.data});
       
         })
         .catch(function (error) {
@@ -78,7 +83,8 @@ updateCart(id,qty) {
       
    
   }
-handleSubmitRemove(id) {
+handleSubmitRemove(id)
+ {
   axios.post('remove',{id:id})
     .then(res=> {
         
@@ -97,59 +103,43 @@ handleSubmitRemove(id) {
   
   render() {
     return (
+ <div>
+    <h2>Your order:</h2>
+    <table className="table table-hover table-responsive{-sm|-md|-lg|-xl}">          
+    <thead>
       
-       
-          <div>
-                <h2>Your order:</h2>
-      
-  
-        <table className="table table-hover table-responsive{-sm|-md|-lg|-xl}">
-            
-  <thead>
-      
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Name</th>
-      <th scope="col">Price $</th>
-      <th scope="col" >Quantity</th>
-      <th scope="col">Total $:</th>
-      <th scope="col">Total €:</th>
-      <th scope="col" >Remove:</th>
-      <th scope="col" >Change Quantity:</th>
-    </tr>
+       <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Price $</th>
+        <th scope="col" >Quantity</th>
+        <th scope="col">Total $:</th>
+        <th scope="col">Total €:</th>
+        <th scope="col" >Remove:</th>
+        <th scope="col" >Change Quantity:</th>
+        </tr>
   </thead>
 
   {this.state.products.map((data,mykey)=>
     <tbody key={mykey}>
-  <tr>
+    <tr>
       <td>{data.id}</td>
-
- 
-     
       <td>{data.name}</td>
-   
-     
       <td>{data.price}</td>
-  
-     
       <td>{data.quantity}</td>
- 
-      
       <td>{data.quantity*data.price}</td>
       <td>{Math.floor(data.quantity*data.price*0.92 * 100) / 100 }</td>
       <td>
       <button type="button" onClick={(e)=>this.handleSubmitRemove(data.id)} className="btn btn-danger">Remove</button>
       </td>
-
       <td>
        <button  style={{margin: "3px"}} className="btn btn-secondary" type="button" onClick={(e)=> this.updateCart(data.id,1)}>+</button>
        <button  style={{margin: "3px"}} className="btn btn-secondary" disabled={data.quantity==1} type="button" onClick={(e)=> this.updateCart(data.id,-1)}>-</button>
       </td>
     
-      </tr>
-      </tbody>
+   </tr>
+  </tbody>
   )}
-
 </table>
       
 <div>
@@ -159,11 +149,12 @@ handleSubmitRemove(id) {
        <div><h4>Total with delivery +10$: {this.state.total+10}$</h4></div>
        <div><h4>Total with delivery +10€: {Math.floor((this.state.total*0.92+10) * 100) / 100}€</h4></div>
     </div>
-<div>
+<div> 
     <br/>
-<div><button className="btn btn-danger" onClick={this.handleSubmitClear}>Clear Cart</button></div>
+    <button className="btn btn-danger" onClick={this.handleSubmitClear} syle={{margin: "6px"}}>Clear Cart</button> 
 </div>
-<br></br>
+<br/>
+
 <h1>Person details</h1>
 <div className="row">
   <div className="col-md-10"></div>
@@ -190,14 +181,12 @@ handleSubmitRemove(id) {
     <label >Phone Number:</label>
     <input type="number" className="form-control" id="exampleInputPhone" placeholder="Phone Number"/>
   </div>
-    <button type="button" className="btn btn-dark" onClick={this.handleSubmitC}>Complete Your Order</button>
-              
+    <button type="button" className="btn btn-dark" onClick={this.handleSubmitC}>Complete Your Order</button>            
 </form>      
     </div> 
     </div>
     );
   }
 }
-
 
 export default CartChosen;
