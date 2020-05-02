@@ -5,28 +5,15 @@ import { Link, hashHistory } from 'react-router';
 class CartChosen extends Component {
   constructor(props) {
       super(props);
-      this.state={products:[],total:'',qty:'' }
-      this.handleSubmitC = this.handleSubmitC.bind(this);
+      this.state={products:[],total:'',qty:'',fields:{name: '',lname: '',address: '',email: '',phone:''}, errors:{},fname:'',lname:'' }
       this.handleSubmitClear = this.handleSubmitClear.bind(this);
       this.handleSubmitRemove = this.handleSubmitRemove.bind(this);
       this.updateCart = this.updateCart.bind(this);
+      this.handleValidation = this.handleValidation.bind(this);
+      this.handleChange = this.handleChange.bind(this);
+      this.contactSubmit = this.contactSubmit.bind(this);
   }
-  
-handleSubmitC(e)
- {
-   if(this.state.total!=0)
-   {
-     axios.get('clear') ;
-     hashHistory.push('/order-completed');
-     e.preventDefault();
-   }
-   else
-   {
-     e.preventDefault();
-     alert("Your cart is empty! Please choose something to continue.")
-   }
 
-}
 handleSubmitClear(e) 
 {
     if(this.state.total!=0)
@@ -100,6 +87,103 @@ handleSubmitRemove(id)
           console.log(error);
         })
 }
+handleValidation(){
+    let fields = this.state.fields;
+    let errors = {};
+    let formIsValid = true;
+
+    //Name
+    if(!fields["name"]){
+       formIsValid = false;
+       errors["name"] = "Cannot be empty";
+    }
+
+    else if(typeof fields["name"] !== "undefined"){
+       if(!fields["name"].match(/^[a-zA-Z]+$/)){
+          formIsValid = false;
+          errors["name"] = "Only letters";
+       }        
+    }
+    //Last Name
+    if(!fields["lname"]){
+        formIsValid = false;
+        errors["lname"] = "Cannot be empty";
+       
+     }
+ 
+     else if(typeof fields["lname"] !== "undefined"){
+        if(!fields["lname"].match(/^[a-zA-Z]+$/)){
+           formIsValid = false;
+           errors["lname"] = "Only letters";
+        }        
+     }
+
+     //Address
+    if(!fields["address"]){
+        formIsValid = false;
+        errors["address"] = "Cannot be empty";
+     }
+ 
+     else if(typeof fields["address"] !== "undefined"){
+        if(!fields["address"].match(/^[#.0-9a-zA-Z\s,-]+$/)){ 
+           formIsValid = false;
+           errors["address"] = "Cannot contain special characters";
+        }        
+     }
+      //Phone
+    if(!fields["phone"]){
+        formIsValid = false;
+        errors["phone"] = "Cannot be empty";
+     }
+
+    //Email
+    if(!fields["email"]){
+       formIsValid = false;
+       errors["email"] = "Cannot be empty";
+    }
+
+   else if(typeof fields["email"] !== "undefined"){
+       let lastAtPos = fields["email"].lastIndexOf('@');
+       let lastDotPos = fields["email"].lastIndexOf('.');
+
+       if (!(lastAtPos < lastDotPos && lastAtPos > 0 && fields["email"].indexOf('@@') == -1 && lastDotPos > 2 && (fields["email"].length - lastDotPos) > 2))
+        {
+          formIsValid = false;
+          errors["email"] = "Email is not valid";
+        }
+   }  
+
+   this.setState({errors: errors});
+  // console.log(errors)
+   return formIsValid;
+}
+handleChange(field, e){         
+    let fields = this.state.fields;
+    fields[field] = e.target.value;        
+    this.setState({fields});
+}
+contactSubmit(e){
+    e.preventDefault();
+
+    if(this.handleValidation()){
+        if(this.state.total!=0)
+          {
+            axios.get('clear') ;
+            hashHistory.push('/order-completed');
+             e.preventDefault();
+          }
+        else
+         {
+             e.preventDefault();
+             alert("Your cart is empty! Please choose something to continue.");
+        }
+    }
+    else
+    {
+       alert("Please check your personal details and mail address!");
+    }
+
+}
   
   render() {
     return (
@@ -162,26 +246,36 @@ handleSubmitRemove(id)
 <form onSubmit={this.handleSubmit} >
 <div className="form-group">
     <label >First Name</label>
-    <input type="fname" className="form-control" id="exampleInputfName" aria-describedby="emailHelp" placeholder="Enter First Name"/>
+    <input ref="name" onChange={this.handleChange.bind(this, "name")} value={this.state.fields["name"]} type="fname" className="form-control" id="exampleInputfName" aria-describedby="emailHelp" placeholder="Enter First Name"/>
+    <span className="error" style={{color:"red"}}>{this.state.errors["name"]}</span>
+    <br/>
     </div>
-    <div className="form-group">
+    <div  className="form-group">
     <label >Last Name</label>
-    <input type="lname" className="form-control" id="exampleInputlName" aria-describedby="emailHelp" placeholder="Enter Last Name"/>
+    <input ref="lname" onChange={this.handleChange.bind(this, "lname")} value={this.state.fields["lname"]} type="lname" className="form-control" id="exampleInputlName" aria-describedby="emailHelp" placeholder="Enter Last Name"/>
+    <span className="error" style={{color:"red"}}>{this.state.errors["lname"]}</span>
+    <br/>
     </div>
 	<div className="form-group">
     <label >Adress</label>
-    <input type="address" className="form-control" id="exampleAddress" aria-describedby="emailHelp" placeholder="Enter Address"/>
+    <input ref="address" onChange={this.handleChange.bind(this, "address")} value={this.state.fields["addres"]} type="address" className="form-control" id="exampleAddress" aria-describedby="emailHelp" placeholder="Enter Address"/>
+    <span className="error" style={{color:"red"}}>{this.state.errors["address"]}</span>
+    <br/>
     </div>
   <div className="form-group">
     <label >Email address</label>
-    <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"/>
+    <input ref="email" onChange={this.handleChange.bind(this, "email")} value={this.state.fields["email"]} type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"/>
     <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+    <span className="error" style={{color:"red"}}>{this.state.errors["email"]}</span>
+    <br/>
   </div>
   <div className="form-group">
     <label >Phone Number:</label>
-    <input type="number" className="form-control" id="exampleInputPhone" placeholder="Phone Number"/>
+    <input ref="phone" onChange={this.handleChange.bind(this, "phone")} value={this.state.fields["phone"]} type="number" className="form-control" id="exampleInputPhone" placeholder="Phone Number"/>
+    <span className="error" style={{color:"red"}}>{this.state.errors["phone"]}</span>
+    <br/>  
   </div>
-    <button type="button" className="btn btn-dark" onClick={this.handleSubmitC}>Complete Your Order</button>            
+    <button type="button" className="btn btn-dark" onClick={this.contactSubmit.bind(this)}>Complete Your Order</button>            
 </form>      
     </div> 
     </div>

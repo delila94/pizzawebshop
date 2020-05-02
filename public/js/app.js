@@ -73635,28 +73635,28 @@ var CartChosen = /*#__PURE__*/function (_Component) {
     _this.state = {
       products: [],
       total: '',
-      qty: ''
+      qty: '',
+      fields: {
+        name: '',
+        lname: '',
+        address: '',
+        email: '',
+        phone: ''
+      },
+      errors: {},
+      fname: '',
+      lname: ''
     };
-    _this.handleSubmitC = _this.handleSubmitC.bind(_assertThisInitialized(_this));
     _this.handleSubmitClear = _this.handleSubmitClear.bind(_assertThisInitialized(_this));
     _this.handleSubmitRemove = _this.handleSubmitRemove.bind(_assertThisInitialized(_this));
     _this.updateCart = _this.updateCart.bind(_assertThisInitialized(_this));
+    _this.handleValidation = _this.handleValidation.bind(_assertThisInitialized(_this));
+    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
+    _this.contactSubmit = _this.contactSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(CartChosen, [{
-    key: "handleSubmitC",
-    value: function handleSubmitC(e) {
-      if (this.state.total != 0) {
-        axios.get('clear');
-        react_router__WEBPACK_IMPORTED_MODULE_1__["hashHistory"].push('/order-completed');
-        e.preventDefault();
-      } else {
-        e.preventDefault();
-        alert("Your cart is empty! Please choose something to continue.");
-      }
-    }
-  }, {
     key: "handleSubmitClear",
     value: function handleSubmitClear(e) {
       if (this.state.total != 0) {
@@ -73731,6 +73731,98 @@ var CartChosen = /*#__PURE__*/function (_Component) {
       });
     }
   }, {
+    key: "handleValidation",
+    value: function handleValidation() {
+      var fields = this.state.fields;
+      var errors = {};
+      var formIsValid = true; //Name
+
+      if (!fields["name"]) {
+        formIsValid = false;
+        errors["name"] = "Cannot be empty";
+      } else if (typeof fields["name"] !== "undefined") {
+        if (!fields["name"].match(/^[a-zA-Z]+$/)) {
+          formIsValid = false;
+          errors["name"] = "Only letters";
+        }
+      } //Last Name
+
+
+      if (!fields["lname"]) {
+        formIsValid = false;
+        errors["lname"] = "Cannot be empty";
+      } else if (typeof fields["lname"] !== "undefined") {
+        if (!fields["lname"].match(/^[a-zA-Z]+$/)) {
+          formIsValid = false;
+          errors["lname"] = "Only letters";
+        }
+      } //Address
+
+
+      if (!fields["address"]) {
+        formIsValid = false;
+        errors["address"] = "Cannot be empty";
+      } else if (typeof fields["address"] !== "undefined") {
+        if (!fields["address"].match(/^[#.0-9a-zA-Z\s,-]+$/)) {
+          formIsValid = false;
+          errors["address"] = "Cannot contain special characters";
+        }
+      } //Phone
+
+
+      if (!fields["phone"]) {
+        formIsValid = false;
+        errors["phone"] = "Cannot be empty";
+      } //Email
+
+
+      if (!fields["email"]) {
+        formIsValid = false;
+        errors["email"] = "Cannot be empty";
+      } else if (typeof fields["email"] !== "undefined") {
+        var lastAtPos = fields["email"].lastIndexOf('@');
+        var lastDotPos = fields["email"].lastIndexOf('.');
+
+        if (!(lastAtPos < lastDotPos && lastAtPos > 0 && fields["email"].indexOf('@@') == -1 && lastDotPos > 2 && fields["email"].length - lastDotPos > 2)) {
+          formIsValid = false;
+          errors["email"] = "Email is not valid";
+        }
+      }
+
+      this.setState({
+        errors: errors
+      }); // console.log(errors)
+
+      return formIsValid;
+    }
+  }, {
+    key: "handleChange",
+    value: function handleChange(field, e) {
+      var fields = this.state.fields;
+      fields[field] = e.target.value;
+      this.setState({
+        fields: fields
+      });
+    }
+  }, {
+    key: "contactSubmit",
+    value: function contactSubmit(e) {
+      e.preventDefault();
+
+      if (this.handleValidation()) {
+        if (this.state.total != 0) {
+          axios.get('clear');
+          react_router__WEBPACK_IMPORTED_MODULE_1__["hashHistory"].push('/order-completed');
+          e.preventDefault();
+        } else {
+          e.preventDefault();
+          alert("Your cart is empty! Please choose something to continue.");
+        }
+      } else {
+        alert("Please check your personal details and mail address!");
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this5 = this;
@@ -73802,30 +73894,57 @@ var CartChosen = /*#__PURE__*/function (_Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "First Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        ref: "name",
+        onChange: this.handleChange.bind(this, "name"),
+        value: this.state.fields["name"],
         type: "fname",
         className: "form-control",
         id: "exampleInputfName",
         "aria-describedby": "emailHelp",
         placeholder: "Enter First Name"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "error",
+        style: {
+          color: "red"
+        }
+      }, this.state.errors["name"]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Last Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        ref: "lname",
+        onChange: this.handleChange.bind(this, "lname"),
+        value: this.state.fields["lname"],
         type: "lname",
         className: "form-control",
         id: "exampleInputlName",
         "aria-describedby": "emailHelp",
         placeholder: "Enter Last Name"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "error",
+        style: {
+          color: "red"
+        }
+      }, this.state.errors["lname"]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Adress"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        ref: "address",
+        onChange: this.handleChange.bind(this, "address"),
+        value: this.state.fields["addres"],
         type: "address",
         className: "form-control",
         id: "exampleAddress",
         "aria-describedby": "emailHelp",
         placeholder: "Enter Address"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "error",
+        style: {
+          color: "red"
+        }
+      }, this.state.errors["address"]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Email address"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        ref: "email",
+        onChange: this.handleChange.bind(this, "email"),
+        value: this.state.fields["email"],
         type: "email",
         className: "form-control",
         id: "exampleInputEmail1",
@@ -73834,17 +73953,30 @@ var CartChosen = /*#__PURE__*/function (_Component) {
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", {
         id: "emailHelp",
         className: "form-text text-muted"
-      }, "We'll never share your email with anyone else.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "We'll never share your email with anyone else."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "error",
+        style: {
+          color: "red"
+        }
+      }, this.state.errors["email"]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Phone Number:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        ref: "phone",
+        onChange: this.handleChange.bind(this, "phone"),
+        value: this.state.fields["phone"],
         type: "number",
         className: "form-control",
         id: "exampleInputPhone",
         placeholder: "Phone Number"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "error",
+        style: {
+          color: "red"
+        }
+      }, this.state.errors["phone"]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "button",
         className: "btn btn-dark",
-        onClick: this.handleSubmitC
+        onClick: this.contactSubmit.bind(this)
       }, "Complete Your Order"))));
     }
   }]);
