@@ -73696,14 +73696,11 @@ var CartChosen = /*#__PURE__*/function (_Component) {
         qty: qty,
         id: id
       }).then(function (res) {
-        console.log(res.data);
-
+        // console.log(res.data)
         _this3.setState({
           products: Object.values(res.data)
         }, function () {
           axios.get('total').then(function (responseT) {
-            console.log(responseT.data);
-
             _this3.setState({
               total: responseT.data
             });
@@ -73723,8 +73720,6 @@ var CartChosen = /*#__PURE__*/function (_Component) {
           products: Object.values(res.data)
         }, function () {
           axios.get('total').then(function (responseT) {
-            console.log(responseT.data);
-
             _this4.setState({
               total: responseT.data
             });
