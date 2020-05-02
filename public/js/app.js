@@ -73703,11 +73703,11 @@ var CartChosen = /*#__PURE__*/function (_Component) {
         });
       });
       axios.get('total').then(function (responseT) {
+        console.log(responseT.data);
+
         _this3.setState({
           total: responseT.data
         });
-      })["catch"](function (error) {
-        console.log(error);
       });
     }
   }, {
@@ -73723,6 +73723,8 @@ var CartChosen = /*#__PURE__*/function (_Component) {
         });
       });
       axios.get('total').then(function (responseT) {
+        console.log(responseT.data);
+
         _this4.setState({
           total: responseT.data
         });

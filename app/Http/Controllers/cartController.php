@@ -58,7 +58,8 @@ public function updateCart (Request $res)
 }
 
       public function total(){
-      $total = Cart::getTotal();
+      return Cart::getTotal();
+      
     }
     public function myCartR()
     {

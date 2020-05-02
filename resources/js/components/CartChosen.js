@@ -60,15 +60,12 @@ updateCart(id,qty)
     this.setState({products: Object.values(res.data) }); } );
     axios.get('total') 
      .then(responseT => {
-           
+        console.log(responseT.data)
      this.setState({ total: responseT.data});
-      
+     
         })
-        .catch(function (error) {
-          console.log(error);
-        })
-      
-   
+  
+  
   }
 handleSubmitRemove(id)
  {
@@ -79,13 +76,14 @@ handleSubmitRemove(id)
         
         axios.get('total') 
         .then(responseT => {
-           
+            console.log(responseT.data)
           this.setState({ total: responseT.data});
       
         })
         .catch(function (error) {
           console.log(error);
         })
+       
 }
 handleValidation(){
     let fields = this.state.fields;
