@@ -34,7 +34,7 @@ class TableRow extends Component {
     e.preventDefault();
     axios.post('add',{qty:this.state.qty,
       id:id})
-      .then(res=> {console.log(res.data); } );
+     // .then(res=> {console.log(res.data); } );
     alert("Pizza added to cart!"); 
 }
 
