@@ -73700,13 +73700,14 @@ var CartChosen = /*#__PURE__*/function (_Component) {
 
         _this3.setState({
           products: Object.values(res.data)
-        });
-      });
-      axios.get('total').then(function (responseT) {
-        console.log(responseT.data);
+        }, function () {
+          axios.get('total').then(function (responseT) {
+            console.log(responseT.data);
 
-        _this3.setState({
-          total: responseT.data
+            _this3.setState({
+              total: responseT.data
+            });
+          });
         });
       });
     }

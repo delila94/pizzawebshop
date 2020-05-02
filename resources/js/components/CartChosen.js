@@ -57,14 +57,14 @@ updateCart(id,qty)
     axios.post('update',{qty:qty,id:id})
     .then(res=> {
      console.log(res.data)
-    this.setState({products: Object.values(res.data) }); } );
-    axios.get('total') 
-     .then(responseT => {
-        console.log(responseT.data)
-     this.setState({ total: responseT.data});
-     
-        })
-  
+    this.setState({products: Object.values(res.data) },()=>{axios.get('total') 
+    .then(responseT => {
+       console.log(responseT.data)
+    this.setState({ total: responseT.data});
+    })}
+
+    ); 
+    } );
   
   }
 handleSubmitRemove(id)
