@@ -74334,11 +74334,7 @@ var MyGlobleSetting = function MyGlobleSetting() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/es/index.js");
-/* harmony import */ var _TableRow__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./TableRow */ "./resources/js/components/TableRow.js");
-/* harmony import */ var _MyGlobleSetting__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./MyGlobleSetting */ "./resources/js/components/MyGlobleSetting.js");
+/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/es/index.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -74364,9 +74360,6 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-
-
-
 var OrderCompleted = /*#__PURE__*/function (_Component) {
   _inherits(OrderCompleted, _Component);
 
@@ -74378,18 +74371,27 @@ var OrderCompleted = /*#__PURE__*/function (_Component) {
     _classCallCheck(this, OrderCompleted);
 
     _this = _super.call(this, props);
-    _this.state = {
-      value: '',
-      products: ''
-    };
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(OrderCompleted, [{
+    key: "handleSubmit",
+    value: function handleSubmit() {
+      react_router__WEBPACK_IMPORTED_MODULE_1__["hashHistory"].push('/');
+    }
+  }, {
     key: "render",
     value: function render() {
+      var centered = {
+        position: "fixed",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)"
+      };
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "justify-content-md-center"
+        style: centered,
+        className: "row justify-content-md-center"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container justify-content-md-center"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -74397,13 +74399,12 @@ var OrderCompleted = /*#__PURE__*/function (_Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Order successfully completed!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col text-center"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "btn btn-success btn-lg"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-        to: "/",
         style: {
-          color: "white"
-        }
-      }, "Home")))));
+          margin: "25px"
+        },
+        className: "btn btn-success btn-lg",
+        onClick: this.handleSubmit
+      }, "Home"))));
     }
   }]);
 

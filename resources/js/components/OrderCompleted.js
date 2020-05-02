@@ -1,32 +1,36 @@
 import React, {Component} from 'react';
-import axios from 'axios';
-import { Link } from 'react-router';
-import TableRow from './TableRow';
-import MyGlobleSetting from './MyGlobleSetting';
+import { hashHistory } from 'react-router';
+
 class OrderCompleted extends Component {
   constructor(props) {
        super(props);
-       this.state = {value: '', products: ''};
+       this.handleSubmit=this.handleSubmit.bind(this);
      }
    
-   
+   handleSubmit()
+   {
+     hashHistory.push('/');
+   }
 
 
   render(){
+    const centered ={
+      position: "fixed",
+      top: "50%",
+      left: "50%",
+      transform: "translate(-50%, -50%)"
+    }
     return (
-      <div className="justify-content-md-center">
-       
+      <div style={centered} className="row justify-content-md-center">
         <div className="container justify-content-md-center">
-  <div className="row justify-content-md-center">
-    <h1>Order successfully completed!</h1>
-    </div>
-    <div className="col text-center">
-    <button className="btn btn-success btn-lg"><Link to="/" style={{color:"white"}}>Home</Link></button>
-    </div>
-   
- 
-</div>
-    </div>
+          <div className="row justify-content-md-center">
+            <h1>Order successfully completed!</h1>
+          </div>
+         <div className="col text-center">
+           <button style={{margin:"25px"}} className="btn btn-success btn-lg" onClick={this.handleSubmit}>Home</button>
+         </div>
+       </div>
+     </div>
     )
   }
 }
