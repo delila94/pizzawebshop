@@ -73721,16 +73721,15 @@ var CartChosen = /*#__PURE__*/function (_Component) {
       }).then(function (res) {
         _this4.setState({
           products: Object.values(res.data)
-        });
-      });
-      axios.get('total').then(function (responseT) {
-        console.log(responseT.data);
+        }, function () {
+          axios.get('total').then(function (responseT) {
+            console.log(responseT.data);
 
-        _this4.setState({
-          total: responseT.data
+            _this4.setState({
+              total: responseT.data
+            });
+          });
         });
-      })["catch"](function (error) {
-        console.log(error);
       });
     }
   }, {

@@ -72,17 +72,12 @@ handleSubmitRemove(id)
   axios.post('remove',{id:id})
     .then(res=> {
         
-        this.setState({products: Object.values(res.data) }); } );
-        
-        axios.get('total') 
+        this.setState({products: Object.values(res.data) }, ()=>{axios.get('total') 
         .then(responseT => {
-            console.log(responseT.data)
-          this.setState({ total: responseT.data});
-      
-        })
-        .catch(function (error) {
-          console.log(error);
-        })
+           console.log(responseT.data)
+        this.setState({ total: responseT.data});
+        })}
+        ); } );
        
 }
 handleValidation(){
