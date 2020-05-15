@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import { hashHistory } from 'react-router';
-
 class OrderCompleted extends Component {
   constructor(props) {
        super(props);

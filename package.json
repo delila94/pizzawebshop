@@ -25,9 +25,12 @@
     },
     "dependencies": {
         "jquery": "^3.4.1",
+        "react-awesome-modal": "^2.0.5",
         "react-bootstrap": "^1.0.0",
+        "react-popupbox": "^2.0.8",
         "react-router": "^3.2.0",
         "react-router-dom": "^5.1.2",
+        "reactjs-popup": "^1.5.0",
         "sweetalert2": "^9.10.12"
     }
 }

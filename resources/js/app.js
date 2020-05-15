@@ -18,7 +18,8 @@ import TableRow from './components/TableRow';
 import CartChosen from './components/CartChosen';
 import HomePizza from './components/HomePizza';
 render(
-  <Router history={hashHistory}>
+  <Router onUpdate={() => window.scrollTo(0, 0)} history={hashHistory}>
+    
       <Route path="/master" component={Master} >
         <Route path="/" component={HomePizza} />
         <Route path="/display-item" component={TableRow} />

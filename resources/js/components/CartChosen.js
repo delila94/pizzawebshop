@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { Link, hashHistory } from 'react-router';
+import {Button, ButtonToolbar, Modal} from 'react-bootstrap';
 
 
 class CartChosen extends Component {
   constructor(props) {
       super(props);
-      this.state={products:[],total:'',qty:'',fields:{name: '',lname: '',address: '',email: '',phone:''}, errors:{},fname:'',lname:'' }
+      this.state={products:[],total:'',qty:'',totalDelivery:'0',show: false,showEmpty:false, fields:{name: '',lname: '',address: '',email: '',phone:''}, errors:{}}
       this.handleSubmitClear = this.handleSubmitClear.bind(this);
       this.handleSubmitRemove = this.handleSubmitRemove.bind(this);
       this.updateCart = this.updateCart.bind(this);
@@ -24,11 +25,16 @@ handleSubmitClear(e)
     else
     {
      e.preventDefault();
-    alert("Your cart is already empty!")
+     this.setState({show: !this.state.show});
     }
  
  }
-
+ handleModal() {
+  this.setState({show: !this.state.show});
+}
+handleModalEmpty() {
+  this.setState({showEmpty: !this.state.showEmpty});
+}
 componentDidMount() 
 {
   axios.get('myCart') 
@@ -166,21 +172,32 @@ contactSubmit(e){
         else
          {
              e.preventDefault();
-             alert("Your cart is empty! Please choose something to continue.");
+             this.setState({showEmpty: !this.state.showEmpty});
         }
     }
-    else
-    {
-       alert("Please check your personal details and mail address!");
-    }
-
 }
-  
+
+  //<h1 style={{margin:"15px"}}>Person details</h1>
   render() {
     return (
  <div style={{marginLeft:"15px",marginRight:"15px"}}>
-    <h2>Your order:</h2>
-    <table className="table table-hover table-responsive{-sm|-md|-lg|-xl}">          
+    <Modal id="#clearCart" show={this.state.show} onHide={()=>{this.handleModal()}}>
+          <Modal.Header closeButton> Pizza Yummi</Modal.Header>
+          <Modal.Body > <p className="row justify-content-center">Your Cart is already empty!</p></Modal.Body>
+          <Modal.Footer>
+            <Button variant="danger" onClick={()=>{this.handleModal()}}>Close</Button>
+          </Modal.Footer>
+        </Modal>
+        <Modal id="#emptyCart" show={this.state.showEmpty} onHide={()=>{this.handleModalEmpty()}}>
+          <Modal.Header closeButton> Pizza Yummi</Modal.Header>
+          <Modal.Body > <p className="row justify-content-center">Your cart is empty! Please choose something to continue.</p></Modal.Body>
+          <Modal.Footer>
+            <Button variant="danger" onClick={()=>{this.handleModalEmpty()}}>Close</Button>
+          </Modal.Footer>
+        </Modal>
+        <div style={{width: "55%", float:"left",marginRight:"25px"}}>
+    <h2 style={{margin:"20px"}}>Review your order:</h2>
+    <table className="table table-info table-hover table-responsive{-sm|-md|-lg|-xl} ">          
     <thead>
       
        <tr>
@@ -191,7 +208,7 @@ contactSubmit(e){
         <th scope="col">Total $:</th>
         <th scope="col">Total €:</th>
         <th scope="col" >Remove:</th>
-        <th scope="col" >Change Quantity:</th>
+        <th scope="col" >Update:</th>
         </tr>
   </thead>
 
@@ -205,7 +222,7 @@ contactSubmit(e){
       <td>{data.quantity*data.price}</td>
       <td>{Math.floor(data.quantity*data.price*0.92 * 100) / 100 }</td>
       <td>
-      <button type="button" onClick={(e)=>this.handleSubmitRemove(data.id)} className="btn btn-danger">Remove</button>
+      <button type="button" onClick={(e)=>this.handleSubmitRemove(data.id)} className="btn btn-danger">X</button>
       </td>
       <td>
        <button  style={{margin: "3px"}} className="btn btn-secondary" type="button" onClick={(e)=> this.updateCart(data.id,1)}>+</button>
@@ -215,25 +232,58 @@ contactSubmit(e){
    </tr>
   </tbody>
   )}
-</table>
-      
-<div>
-    <div>
-       <div><h4>Total price: {this.state.total}$</h4> </div>
-       <div><h4>Total price: {Math.floor(this.state.total*0.92 * 100) / 100}€</h4> </div>
-       <div><h4>Total with delivery +10$: {this.state.total+10}$</h4></div>
-       <div><h4>Total with delivery +10€: {Math.floor((this.state.total*0.92+10) * 100) / 100}€</h4></div>
-    </div>
-<div> 
-    <br/>
-    <button className="btn btn-danger" onClick={this.handleSubmitClear} syle={{margin: "6px"}}>Clear Cart</button> 
-</div>
-<br/>
 
-<h1>Person details</h1>
-<div className="row" >
-  <div className="col-md-10"></div>
+</table>
+</div>   
+
+<div style={{width: "40%", float:"left",backgroundColor:"#e6e6e6",margin:"15px",border:"solid"}}>
+  <h4 style={{margin:"20px"}}>Order Summary $:</h4>
+<table class="table table-borderless" style={{width:"400px", margin:"30px"}}>
+    <tbody>
+        <tr>
+          <th >Subtotal: $</th>
+            <td>{this.state.total}$</td>   
+        </tr>
+        
+        <tr>
+          <th>Shipping$:</th>
+            <td>{10}$</td>
+        </tr>
+        <tr>
+          <th>Order total:</th>
+            <td>{this.state.total+10}$</td>
+        </tr>
+    </tbody>
+</table>
 </div>
+<div style={{width: "40%", float:"right",backgroundColor:"#f2f2f2",margin:"25px",border:"solid"}}>
+  <h4 style={{margin:"20px"}}>Order Summary €:</h4>
+<table class="table table-borderless" style={{width:"400px", margin:"30px"}}>
+    <tbody>
+        <tr>
+          <th >Subtotal: €</th>
+            <td>{Math.floor(this.state.total*0.92 * 100) / 100}€</td>   
+        </tr>
+        
+        <tr>
+          <th>Shipping €:</th>
+            <td>{9.2}€</td>
+        </tr>
+        <tr>
+          <th>Order total:</th>
+          <td style={{textDecoration:"bold"}}>{Math.floor((this.state.total*0.92+9.2) * 100) / 100}€</td> 
+        </tr>
+
+    </tbody>
+</table>
+</div>
+<div  style={{width: "50%",margin:"25px",textAlign:"center"}}>
+<button className="btn btn-danger justify-content-md-center btn-lg" onClick={this.handleSubmitClear} syle={{margin: "30px" ,display: "block"}}>Clear Cart</button> 
+</div>
+<div style={{ marginTop:"10px"}}>
+<h1 >Shipping Address</h1>
+</div>
+<div  style={{width: "50%"}}>
 <form onSubmit={this.handleSubmit} >
 <div className="form-group">
     <label >First Name</label>
@@ -248,7 +298,7 @@ contactSubmit(e){
     <br/>
     </div>
 	<div className="form-group">
-    <label >Adress</label>
+    <label >Adress Line</label>
     <input ref="address" onChange={this.handleChange.bind(this, "address")} value={this.state.fields["addres"]} type="address" className="form-control" id="exampleAddress" aria-describedby="emailHelp" placeholder="Enter Address"/>
     <span className="error" style={{color:"red"}}>{this.state.errors["address"]}</span>
     <br/>
@@ -266,9 +316,11 @@ contactSubmit(e){
     <span className="error" style={{color:"red"}}>{this.state.errors["phone"]}</span>
     <br/>  
   </div>
-    <button type="button" className="btn btn-dark" onClick={this.contactSubmit.bind(this)}>Complete Your Order</button>            
-</form>      
-    </div> 
+  <h4> <b>Order total: {this.state.total+10}$</b></h4>
+  <small id="placeHelp" className="form-text text-muted">By placing your order, you agree to yummi pizza’s privacy notice and conditions of use.</small>
+    <button type="button" disabled={this.state.total==0} style={{marginBottom:"20px",marginTop:"10px"}} className="btn btn-success" onClick={this.contactSubmit.bind(this)}>Place Your Order</button>            
+</form>   
+    </div>   
     </div>
     );
   }
