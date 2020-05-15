@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "jquery": "^3.4.1",
+        "materialize-css": "^1.0.0-rc.2",
         "react-awesome-modal": "^2.0.5",
         "react-bootstrap": "^1.0.0",
         "react-popupbox": "^2.0.8",

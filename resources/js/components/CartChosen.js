@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Link, hashHistory } from 'react-router';
-import {Button, ButtonToolbar, Modal} from 'react-bootstrap';
+import {Button, Modal} from 'react-bootstrap';
 
 
 class CartChosen extends Component {
   constructor(props) {
       super(props);
-      this.state={products:[],total:'',qty:'',totalDelivery:'0',show: false,showEmpty:false, fields:{name: '',lname: '',address: '',email: '',phone:''}, errors:{}}
+      this.state={products:[],total:'',qty:'',shipping:0,totalShip:'0',show: false,showEmpty:false, fields:{name: '',lname: '',address: '',email: '',phone:''}, errors:{}}
       this.handleSubmitClear = this.handleSubmitClear.bind(this);
       this.handleSubmitRemove = this.handleSubmitRemove.bind(this);
       this.updateCart = this.updateCart.bind(this);
@@ -19,8 +19,10 @@ handleSubmitClear(e)
 {
     if(this.state.total!=0)
     {
+      this.setState({shipping:0});
       axios.get('clear') ;
       window.location.reload();
+      
     }
     else
     {
@@ -50,12 +52,17 @@ componentDidMount()
   axios.get('total') 
   .then(responseT => {
      
-    this.setState({ total: responseT.data});
-
-  })
+    this.setState({ total: responseT.data},()=>{if(this.state.total==0){
+      this.setState({shipping:0});
+    } else{
+      this.setState({shipping:10}); 
+    }
+    } );
+  }) 
   .catch(function (error) {
     console.log(error);
   })
+ 
 }
 updateCart(id,qty) 
 {
@@ -79,7 +86,11 @@ handleSubmitRemove(id)
         
         this.setState({products: Object.values(res.data) }, ()=>{axios.get('total') 
         .then(responseT => {
-        this.setState({ total: responseT.data});
+        this.setState({ total: responseT.data},()=>{if(this.state.total==0){
+          this.setState({shipping:0});
+        } else{
+          this.setState({shipping:10}); 
+        }});
         })}
         ); } );
        
@@ -168,6 +179,7 @@ contactSubmit(e){
             axios.get('clear') ;
             hashHistory.push('/order-completed');
              e.preventDefault();
+             this.setState({shipping:0});
           }
         else
          {
@@ -181,6 +193,7 @@ contactSubmit(e){
   render() {
     return (
  <div style={{marginLeft:"15px",marginRight:"15px"}}>
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></link>
     <Modal id="#clearCart" show={this.state.show} onHide={()=>{this.handleModal()}}>
           <Modal.Header closeButton> Pizza Yummi</Modal.Header>
           <Modal.Body > <p className="row justify-content-center">Your Cart is already empty!</p></Modal.Body>
@@ -222,11 +235,11 @@ contactSubmit(e){
       <td>{data.quantity*data.price}</td>
       <td>{Math.floor(data.quantity*data.price*0.92 * 100) / 100 }</td>
       <td>
-      <button type="button" onClick={(e)=>this.handleSubmitRemove(data.id)} className="btn btn-danger">X</button>
+      <button type="button" onClick={(e)=>this.handleSubmitRemove(data.id)} className="btn btn-danger"><i style={{fontSize:"15px"}} className="material-icons">remove_circle</i></button>
       </td>
       <td>
-       <button  style={{margin: "3px"}} className="btn btn-secondary" type="button" onClick={(e)=> this.updateCart(data.id,1)}>+</button>
-       <button  style={{margin: "3px"}} className="btn btn-secondary" disabled={data.quantity==1} type="button" onClick={(e)=> this.updateCart(data.id,-1)}>-</button>
+       <button  style={{margin: "1px"}} className="btn" type="button" onClick={(e)=> this.updateCart(data.id,1)}><i style={{fontSize:"30px"}} className="material-icons">add_circle_outline</i></button>
+       <button  style={{marginLeft: "-20px"}} className="btn" disabled={data.quantity==1} type="button" onClick={(e)=> this.updateCart(data.id,-1)}><i style={{fontSize:"30px"}} className="material-icons">remove_circle_outline</i></button>
       </td>
     
    </tr>
@@ -247,11 +260,11 @@ contactSubmit(e){
         
         <tr>
           <th>Shipping$:</th>
-            <td>{10}$</td>
+            <td>{this.state.shipping}$</td>
         </tr>
         <tr>
           <th>Order total:</th>
-            <td>{this.state.total+10}$</td>
+            <td>{this.state.total+this.state.shipping}$</td>
         </tr>
     </tbody>
 </table>
@@ -267,11 +280,11 @@ contactSubmit(e){
         
         <tr>
           <th>Shipping €:</th>
-            <td>{9.2}€</td>
+            <td>{Math.floor(this.state.shipping*0.92 * 100) / 100}€</td>
         </tr>
         <tr>
           <th>Order total:</th>
-          <td style={{textDecoration:"bold"}}>{Math.floor((this.state.total*0.92+9.2) * 100) / 100}€</td> 
+          <td style={{textDecoration:"bold"}}>{Math.floor(((this.state.total+this.state.shipping)*0.92) * 100) / 100}€</td> 
         </tr>
 
     </tbody>
@@ -316,7 +329,7 @@ contactSubmit(e){
     <span className="error" style={{color:"red"}}>{this.state.errors["phone"]}</span>
     <br/>  
   </div>
-  <h4> <b>Order total: {this.state.total+10}$</b></h4>
+  <h4> <b>Order total: {this.state.total+this.state.shipping}$</b></h4>
   <small id="placeHelp" className="form-text text-muted">By placing your order, you agree to yummi pizza’s privacy notice and conditions of use.</small>
     <button type="button" disabled={this.state.total==0} style={{marginBottom:"20px",marginTop:"10px"}} className="btn btn-success" onClick={this.contactSubmit.bind(this)}>Place Your Order</button>            
 </form>   

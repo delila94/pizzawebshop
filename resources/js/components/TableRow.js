@@ -9,7 +9,7 @@ class TableRow extends Component {
       super(props);
       super();
      
-      this.state={qty:'',products:[],id:'',cart:[], addModalShow: false, show: false, showError:false}
+      this.state={qty:'1',products:[],id:'',cart:[], showZero: false, show: false}
       this.handleSubmit3 = this.handleSubmit3.bind(this);
       this.qty = this.qty.bind(this);
       this.id = this.id.bind(this);
@@ -24,9 +24,14 @@ class TableRow extends Component {
   qty(e)
    {
     e.preventDefault()
-    this.setState({qty:e.target.value});     
+    if(e.target.value>0)
+    {
+    this.setState({qty:e.target.value});  
+    }
+    else {
+      this.setState({showZero: !this.state.showZero}); 
+    }  
   }
-
   id(e) 
   {
     e.preventDefault();
@@ -38,14 +43,12 @@ class TableRow extends Component {
     e.preventDefault();
  if(!this.state.qty) {
   this.setState({showError: !this.state.showError});
- //this.setState({ activeModal: 'selectQuantity' });
  }
  else {
     axios.post('add',{qty:this.state.qty,
       id:id})
       this.setState({show: !this.state.show});
-     // .then(res=> {console.log(res.data); } );
-     this.setState({qty:''});
+     this.setState({qty:'1'});
     } 
 }
 
@@ -65,8 +68,8 @@ componentDidMount()
 handleModal() {
   this.setState({show: !this.state.show});
 }
-handleModalError() {
-  this.setState({showError: !this.state.showError});
+handleModalZero() {
+  this.setState({showZero: !this.state.showZero});
 }
   render() {
 
@@ -74,43 +77,45 @@ handleModalError() {
     let images = array.map(image => {
     return <img key={image} src={require(`./${image}.png`)} style={{width:"70%", height:"auto"}} alt="" className="img-responsive" />
     });
-    let addModalClose=()=> this.setState({addModalShow: false});
     return (
-      
   <div className="container">
-            <Modal id="#addedToCart" show={this.state.show} onHide={()=>{this.handleModal()}}>
+       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></link>
+           <Modal id="#addedToCart" show={this.state.show} onHide={()=>{this.handleModal()}}>
           <Modal.Header closeButton> Pizza Yummi</Modal.Header>
-          <Modal.Body > <p className="row justify-content-center">Pizza added to your cart!</p></Modal.Body>
+          <Modal.Body className="row justify-content-center" > <span><i style={{color:"green",fontSize:"40px"}} className="material-icons">done</i></span> 
+          <p style={{margin:"10px", fontSize:"20px"}}> Product added to your cart!</p></Modal.Body>
           <Modal.Footer>
             <Button onClick={()=>{this.handleModal()}}>Continue Shopping</Button>
-            <Button onClick={()=>{this.handleGo()}}>See Your Cart</Button>
+            <Button  onClick={()=>{this.handleGo()}}>Go to cart</Button>
           </Modal.Footer>
         </Modal>
-        <Modal id="#selectQuantity" show={this.state.showError} onHide={()=>{this.handleModalError()}}>
+        <Modal id="#modalZero" show={this.state.showZero} onHide={()=>{this.handleModalZero()}}>
           <Modal.Header closeButton> Pizza Yummi</Modal.Header>
-          <Modal.Body> <p className="row justify-content-center">Please choose quantity first! </p></Modal.Body>
+          <Modal.Body> <p className="row justify-content-center">Please choose number bigger than 0 </p></Modal.Body>
         </Modal>
-      <h2 style={{margin:"10px"}}>Our pizzas types:</h2>
+      <h2 style={{margin:"10px"}}>Menu:</h2>
       <div className="row justify-content-center mb-5">
-            <button className="btn btn-dark btn-lg" type="button" style={{color:"white"}} onClick={(e)=>this.handleGo()}>See Your Cart</button>
       </div>
          <div className="row justify-content-center">
              {this.state.products.map((data,mykey)=>
           <div className="col-lg 6 col-md-6 col-sm-12 col-xs-12"  key={mykey}>
-            <div className="card mb-4 ml-2 mr-2" style={{width: "280px"}}  >
-              <p className="card-img-top " alt="Card image cap" >{ images[mykey] }</p>
-               <div className="card-body  ">
-                <h3 className="card-title row justify-content-center" style={{fontWeight:"bold"}}>{data.title}</h3>
-                <p className="row justify-content-center">{data.body}</p>
-                <p className="row justify-content-center" style={{fontWeight:"bold"}}>Price:{data.price}$ </p>
-                <p className="row justify-content-center" style={{fontWeight:"bold"}}>Price:{Math.floor(data.price*0.92 * 100) / 100}€ </p>
-                <p className="card-text row justify-content-center"> Quantity:  <input type="number" ref="quantity"  min="1" max="10" onChange={(e)=> {this.qty(e)}}></input></p>
-                
-                
-                <div className="row justify-content-center">
-                <button type="submit"  className="btn btn-primary" onClick={(e)=>{this.handleSubmit3(e,data.id)}}>Add to Cart</button>
-                </div>
-              </div>
+            <div className="card mb-4 ml-2 mr-2 " style={{width: "260px"}}  >
+
+            <div className="card-image" >
+                            <p> { images[mykey] }</p>
+                            <h5 className="card-title"><b>{data.title}</b></h5>
+                        </div>
+                        <div className="card-content">
+                            <p>{data.body}</p>
+                            <div className="row justify-content-center">
+                            <p><b>Price: {data.price}$ ({Math.floor(data.price*0.92 * 100) / 100}€)</b></p>
+                            </div>
+                            
+                            <div  style={{margin:"5px"}} > 
+                            Quantity:  <input type="number" min="1" max="10" ref="quantity"  placeholder="1" onChange={(e)=> {this.qty(e)}}></input>
+                             <button type="submit" style={{width:"40%", marginTop:"7px",color:"#313184"}} className="btn" onClick={(e)=>{this.handleSubmit3(e,data.id)}}><i style={{fontSize:"40px"}} className="material-icons">add_shopping_cart</i></button>
+                             </div>
+                        </div>
            </div>
          </div>   
             )}
