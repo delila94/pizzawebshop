@@ -49,11 +49,11 @@ class TableRow extends Component {
      // this.setState({counter:this.state.counter+parseInt(this.state.qty)});
       //this.setState({counter:this.state.qty},console.log(this.state.qty));
     // this.setState({counter:this.state.counter+parseInt(this.state.qty)}, ()=>{this.props.functionCallFromParent(this.state.counter)});
-    
+    this.setState({show: !this.state.show});
     //} 
     if(this.state.qty==1) {this.setState({qtyDisp:'1'});}
     this.setState({qty:'1'});
-    this.handleModal(id);
+   // this.handleModal(id);
 }
      
 componentDidMount()
@@ -68,12 +68,12 @@ componentDidMount()
 }
 handleModal(id) {
   this.setState({show: !this.state.show});
-  axios.post('item',{id:id})
-    .then(res=> {
+ // axios.post('item',{id:id})
+  //  .then(res=> {
    // console.log(res.data)
-    this.setState({Oneproduct: Object.values(res.data)}
-    ); 
-    } );
+  //  this.setState({Oneproduct: Object.values(res.data)}
+  //  ); 
+ //   } );
    // console.log(this.state.product[0]);
 }
 handleModalZero() {
@@ -98,8 +98,7 @@ childFunction(){
            <Modal id="#addedToCart" show={this.state.show} onHide={()=>{this.handleModal()}}>
           <Modal.Header closeButton> Pizza Yummi</Modal.Header>
           <Modal.Body className="row justify-content-center" >       
-    <p style={{width:"150px"}}>{ images[this.state.Oneproduct[0]-1] }</p>
-    <p style={{margin:"10px", fontSize:"20px"}}> {this.state.qtyDisp} {this.state.Oneproduct[1]} added to your cart!</p></Modal.Body>
+    <p style={{margin:"10px", fontSize:"20px"}}> {this.state.qtyDisp} product added to your cart!</p></Modal.Body>
           <Modal.Footer>
             <Button onClick={()=>{this.handleModal()}}>Continue Shopping</Button>
             <Button  onClick={()=>{this.handleGo()}}>Go to cart</Button>

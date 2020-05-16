@@ -89578,7 +89578,10 @@ var TableRow = /*#__PURE__*/function (_Component) {
       }); // this.setState({counter:this.state.counter+parseInt(this.state.qty)});
       //this.setState({counter:this.state.qty},console.log(this.state.qty));
       // this.setState({counter:this.state.counter+parseInt(this.state.qty)}, ()=>{this.props.functionCallFromParent(this.state.counter)});
-      //} 
+
+      this.setState({
+        show: !this.state.show
+      }); //} 
 
       if (this.state.qty == 1) {
         this.setState({
@@ -89588,8 +89591,7 @@ var TableRow = /*#__PURE__*/function (_Component) {
 
       this.setState({
         qty: '1'
-      });
-      this.handleModal(id);
+      }); // this.handleModal(id);
     }
   }, {
     key: "componentDidMount",
@@ -89607,19 +89609,15 @@ var TableRow = /*#__PURE__*/function (_Component) {
   }, {
     key: "handleModal",
     value: function handleModal(id) {
-      var _this3 = this;
-
       this.setState({
         show: !this.state.show
-      });
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('item', {
-        id: id
-      }).then(function (res) {
-        // console.log(res.data)
-        _this3.setState({
-          Oneproduct: Object.values(res.data)
-        });
-      }); // console.log(this.state.product[0]);
+      }); // axios.post('item',{id:id})
+      //  .then(res=> {
+      // console.log(res.data)
+      //  this.setState({Oneproduct: Object.values(res.data)}
+      //  ); 
+      //   } );
+      // console.log(this.state.product[0]);
     }
   }, {
     key: "handleModalZero",
@@ -89640,7 +89638,7 @@ var TableRow = /*#__PURE__*/function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this4 = this;
+      var _this3 = this;
 
       var array = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
       var images = array.map(function (image) {
@@ -89664,7 +89662,7 @@ var TableRow = /*#__PURE__*/function (_Component) {
         id: "#addedToCart",
         show: this.state.show,
         onHide: function onHide() {
-          _this4.handleModal();
+          _this3.handleModal();
         }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Modal"].Header, {
         closeButton: true
@@ -89672,26 +89670,22 @@ var TableRow = /*#__PURE__*/function (_Component) {
         className: "row justify-content-center"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         style: {
-          width: "150px"
-        }
-      }, images[this.state.Oneproduct[0] - 1]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        style: {
           margin: "10px",
           fontSize: "20px"
         }
-      }, " ", this.state.qtyDisp, " ", this.state.Oneproduct[1], " added to your cart!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Modal"].Footer, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Button"], {
+      }, " ", this.state.qtyDisp, " product added to your cart!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Modal"].Footer, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Button"], {
         onClick: function onClick() {
-          _this4.handleModal();
+          _this3.handleModal();
         }
       }, "Continue Shopping"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Button"], {
         onClick: function onClick() {
-          _this4.handleGo();
+          _this3.handleGo();
         }
       }, "Go to cart"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Modal"], {
         id: "#modalZero",
         show: this.state.showZero,
         onHide: function onHide() {
-          _this4.handleModalZero();
+          _this3.handleModalZero();
         }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Modal"].Header, {
         closeButton: true
@@ -89731,7 +89725,7 @@ var TableRow = /*#__PURE__*/function (_Component) {
           ref: "quantity",
           defaultValue: "1",
           onChange: function onChange(e) {
-            _this4.qty(e);
+            _this3.qty(e);
           }
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           type: "submit",
@@ -89742,7 +89736,7 @@ var TableRow = /*#__PURE__*/function (_Component) {
           },
           className: "btn",
           onClick: function onClick(e) {
-            _this4.handleSubmit3(e, data.id);
+            _this3.handleSubmit3(e, data.id);
           }
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
           style: {
