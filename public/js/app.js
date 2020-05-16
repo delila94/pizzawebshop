@@ -88692,10 +88692,7 @@ var CartChosen = /*#__PURE__*/function (_Component) {
         });
       });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        style: {
-          marginLeft: "15px",
-          marginRight: "15px"
-        }
+        className: "container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("link", {
         href: "https://fonts.googleapis.com/icon?family=Material+Icons",
         rel: "stylesheet"
@@ -88766,7 +88763,7 @@ var CartChosen = /*#__PURE__*/function (_Component) {
           "class": "list-group-item"
         }, "Total Qty: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, data.quantity)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           "class": "list-group-item"
-        }, "Total: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, data.quantity * data.price, "(", Math.floor(data.quantity * data.price * 0.92 * 100) / 100, "\u20AC)")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        }, "Total: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, data.quantity * data.price, "$(", Math.floor(data.quantity * data.price * 0.92 * 100) / 100, "\u20AC)")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           "class": "list-group-item"
         }, "Update: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           style: {
@@ -89579,7 +89576,6 @@ var TableRow = /*#__PURE__*/function (_Component) {
         qty: this.state.qty,
         id: id
       });
-      this.handleModal(id);
       this.setState({
         counter: this.state.counter + parseInt(this.state.qty)
       }); //this.setState({counter:this.state.qty},console.log(this.state.qty));
@@ -89595,6 +89591,7 @@ var TableRow = /*#__PURE__*/function (_Component) {
       this.setState({
         qty: '1'
       });
+      this.handleModal(id);
     }
   }, {
     key: "componentDidMount",
@@ -89624,8 +89621,7 @@ var TableRow = /*#__PURE__*/function (_Component) {
         _this3.setState({
           product: Object.values(res.data)
         });
-      });
-      console.log(this.state.product[0]);
+      }); // console.log(this.state.product[0]);
     }
   }, {
     key: "handleModalZero",

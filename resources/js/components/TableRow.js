@@ -45,7 +45,7 @@ class TableRow extends Component {
     e.preventDefault();
     axios.post('add',{qty:this.state.qty,
       id:id})
-      this.handleModal(id);
+    
       this.setState({counter:this.state.counter+parseInt(this.state.qty)});
       //this.setState({counter:this.state.qty},console.log(this.state.qty));
     // this.setState({counter:this.state.counter+parseInt(this.state.qty)}, ()=>{this.props.functionCallFromParent(this.state.counter)});
@@ -53,7 +53,7 @@ class TableRow extends Component {
     //} 
     if(this.state.qty==1) {this.setState({qtyDisp:'1'});}
     this.setState({qty:'1'});
-    
+    this.handleModal(id);
 }
      
 componentDidMount()
@@ -74,7 +74,7 @@ handleModal(id) {
     this.setState({product: Object.values(res.data)}
     ); 
     } );
-    console.log(this.state.product[0]);
+   // console.log(this.state.product[0]);
 }
 handleModalZero() {
   this.setState({showZero: !this.state.showZero});
