@@ -88221,10 +88221,10 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./0.png": "./resources/js/components/0.png",
 	"./1.png": "./resources/js/components/1.png",
 	"./10.png": "./resources/js/components/10.png",
 	"./11.png": "./resources/js/components/11.png",
+	"./12.png": "./resources/js/components/12.png",
 	"./2.png": "./resources/js/components/2.png",
 	"./3.png": "./resources/js/components/3.png",
 	"./4.png": "./resources/js/components/4.png",
@@ -88259,17 +88259,6 @@ webpackContext.id = "./resources/js/components sync recursive ^\\.\\/.*\\.png$";
 
 /***/ }),
 
-/***/ "./resources/js/components/0.png":
-/*!***************************************!*\
-  !*** ./resources/js/components/0.png ***!
-  \***************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/0.png?0aa5e57a5fb1e42cb01b41dffbab4224";
-
-/***/ }),
-
 /***/ "./resources/js/components/1.png":
 /*!***************************************!*\
   !*** ./resources/js/components/1.png ***!
@@ -88288,7 +88277,7 @@ module.exports = "/images/1.png?2dda652475d4b998e447adb2ad07547f";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/10.png?b9a9f173b9909ef4df4f9ebd6a686db3";
+module.exports = "/images/10.png?e0777834bc6dcedba193438aae75bf4f";
 
 /***/ }),
 
@@ -88299,7 +88288,18 @@ module.exports = "/images/10.png?b9a9f173b9909ef4df4f9ebd6a686db3";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/11.png?d92ef4fc95fd2e21bb7e67a12f6fc8f2";
+module.exports = "/images/11.png?b9a9f173b9909ef4df4f9ebd6a686db3";
+
+/***/ }),
+
+/***/ "./resources/js/components/12.png":
+/*!****************************************!*\
+  !*** ./resources/js/components/12.png ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/12.png?d92ef4fc95fd2e21bb7e67a12f6fc8f2";
 
 /***/ }),
 
@@ -88376,7 +88376,7 @@ module.exports = "/images/7.png?5c89a04423301f09d59e76f41d8efe44";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/8.png?07519d7edd65d07aa432bda45ad5f4cc";
+module.exports = "/images/8.png?0aa5e57a5fb1e42cb01b41dffbab4224";
 
 /***/ }),
 
@@ -88387,7 +88387,7 @@ module.exports = "/images/8.png?07519d7edd65d07aa432bda45ad5f4cc";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/9.png?e0777834bc6dcedba193438aae75bf4f";
+module.exports = "/images/9.png?07519d7edd65d07aa432bda45ad5f4cc";
 
 /***/ }),
 
@@ -88678,6 +88678,19 @@ var CartChosen = /*#__PURE__*/function (_Component) {
     value: function render() {
       var _this5 = this;
 
+      var array = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
+      var images = array.map(function (image) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          key: image,
+          src: __webpack_require__("./resources/js/components sync recursive ^\\.\\/.*\\.png$")("./".concat(image, ".png")),
+          style: {
+            width: "70%",
+            height: "auto"
+          },
+          alt: "",
+          className: "img-responsive"
+        });
+      });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         style: {
           marginLeft: "15px",
@@ -88724,39 +88737,36 @@ var CartChosen = /*#__PURE__*/function (_Component) {
         style: {
           margin: "20px"
         }
-      }, "Review your order:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
-        className: "table table-info table-hover table-sm table-responsive{-sm|-md|-lg|-xl} "
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
-        scope: "col"
-      }, "ID"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
-        scope: "col"
-      }, "Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
-        scope: "col"
-      }, "Price $"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
-        scope: "col"
-      }, "Quantity"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
-        scope: "col"
-      }, "Total $:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
-        scope: "col"
-      }, "Total \u20AC:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
-        scope: "col"
-      }, "Remove:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
-        scope: "col"
-      }, "Update:"))), this.state.products.map(function (data, mykey) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", {
+      }, "Review your order:")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "container text-center justify-content-cente"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row "
+      }, this.state.products.map(function (data, mykey) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "col-lg 6 col-md-6 col-sm-12 col-xs-12",
           key: mykey
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, data.id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, data.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, data.price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, data.quantity), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, data.quantity * data.price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, Math.floor(data.quantity * data.price * 0.92 * 100) / 100), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          type: "button",
-          onClick: function onClick(e) {
-            return _this5.handleSubmitRemove(data.id);
-          },
-          className: "btn btn-danger"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "card mb-4 ml-2 mr-2 ",
           style: {
-            fontSize: "15px"
-          },
-          className: "material-icons"
-        }, "remove_circle"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+            width: "260px"
+          }
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          "class": "card-img-top"
+        }, images[data.id - 1], " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          "class": "card-body"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+          "class": "card-title"
+        }, data.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          "class": "card-text"
+        }, data.description)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+          "class": "list-group list-group-flush"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          "class": "list-group-item"
+        }, "Price: ", data.price, "$(", Math.floor(data.price * 0.92 * 100) / 100, "\u20AC)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          "class": "list-group-item"
+        }, "Total: ", data.quantity * data.price, "(", Math.floor(data.quantity * data.price * 0.92 * 100) / 100, "\u20AC)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          "class": "list-group-item"
+        }, "Update: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           style: {
             margin: "0px"
           },
@@ -88785,19 +88795,27 @@ var CartChosen = /*#__PURE__*/function (_Component) {
             fontSize: "30px"
           },
           className: "material-icons"
-        }, "remove_circle_outline")))));
+        }, "remove_circle_outline")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          "class": "card-body row justify-content-center"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          type: "button",
+          onClick: function onClick(e) {
+            return _this5.handleSubmitRemove(data.id);
+          },
+          className: "btn btn-danger"
+        }, "Remove"))));
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container text-center"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row justify-content-center"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col-md-6"
+        className: "col-lg-6"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
         style: {
           margin: "20px"
         }
       }, "Order Summary \u20AC:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
-        "class": "table table-borderless",
+        "class": "table table-borderless table-hover",
         style: {
           width: "400px",
           margin: "30px"
@@ -88807,13 +88825,13 @@ var CartChosen = /*#__PURE__*/function (_Component) {
           textDecoration: "bold"
         }
       }, Math.floor((this.state.total + this.state.shipping) * 0.92 * 100) / 100, "\u20AC"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col-md-6"
+        className: "col-lg-6"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
         style: {
           margin: "20px"
         }
       }, "Order Summary $:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
-        "class": "table table-borderless",
+        "class": "table table-borderless table-hover",
         style: {
           width: "400px",
           margin: "30px"
@@ -89237,7 +89255,7 @@ var Master = /*#__PURE__*/function (_Component) {
         href: "https://fonts.googleapis.com/icon?family=Material+Icons",
         rel: "stylesheet"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
-        "class": "navbar navbar-expand-lg navbar-light",
+        className: "navbar navbar-expand-lg navbar-light",
         style: {
           color: "white",
           backgroundColor: "#313184"
@@ -89249,7 +89267,7 @@ var Master = /*#__PURE__*/function (_Component) {
         },
         href: "/"
       }, "Pizza Yummi"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        "class": "navbar-toggler",
+        className: "navbar-toggler",
         type: "button",
         "data-toggle": "collapse",
         "data-target": "#navbarSupportedContent",
@@ -89257,26 +89275,26 @@ var Master = /*#__PURE__*/function (_Component) {
         "aria-expanded": "false",
         "aria-label": "Toggle navigation"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        "class": "navbar-toggler-icon"
+        className: "navbar-toggler-icon"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        "class": "collapse navbar-collapse",
+        className: "collapse navbar-collapse",
         id: "navbarSupportedContent"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-        "class": "navbar-nav mr-auto"
+        className: "navbar-nav mr-auto"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        "class": "nav-item active"
+        className: "nav-item active"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        "class": "nav-link",
+        className: "nav-link",
         style: {
           color: "white"
         },
         href: "/"
       }, "Home ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        "class": "sr-only"
+        className: "sr-only"
       }, "(current)"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        "class": "nav-item"
+        className: "nav-item"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        "class": "nav-link",
+        className: "nav-link",
         style: {
           color: "white"
         },
@@ -89503,7 +89521,7 @@ var TableRow = /*#__PURE__*/function (_Component) {
     _this.state = {
       qty: '1',
       qtyDisp: '1',
-      hello: 'Say Hello to learning Props/State in React!',
+      product: [],
       counter: 0,
       products: [],
       id: '',
@@ -89559,9 +89577,7 @@ var TableRow = /*#__PURE__*/function (_Component) {
         qty: this.state.qty,
         id: id
       });
-      this.setState({
-        show: !this.state.show
-      });
+      this.handleModal(id);
       this.setState({
         counter: this.state.counter + parseInt(this.state.qty)
       }); //this.setState({counter:this.state.qty},console.log(this.state.qty));
@@ -89593,10 +89609,21 @@ var TableRow = /*#__PURE__*/function (_Component) {
     }
   }, {
     key: "handleModal",
-    value: function handleModal() {
+    value: function handleModal(id) {
+      var _this3 = this;
+
       this.setState({
         show: !this.state.show
       });
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('item', {
+        id: id
+      }).then(function (res) {
+        // console.log(res.data)
+        _this3.setState({
+          product: Object.values(res.data)
+        });
+      });
+      console.log(this.state.product[0]);
     }
   }, {
     key: "handleModalZero",
@@ -89617,9 +89644,9 @@ var TableRow = /*#__PURE__*/function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
-      var array = ["4", "1", "2", "3", "0", "5", "6", "7", "8", "9", "10", "11"];
+      var array = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
       var images = array.map(function (image) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           key: image,
@@ -89641,36 +89668,34 @@ var TableRow = /*#__PURE__*/function (_Component) {
         id: "#addedToCart",
         show: this.state.show,
         onHide: function onHide() {
-          _this3.handleModal();
+          _this4.handleModal();
         }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Modal"].Header, {
         closeButton: true
       }, " Pizza Yummi"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Modal"].Body, {
         className: "row justify-content-center"
-      }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         style: {
-          color: "green",
-          fontSize: "40px"
-        },
-        className: "material-icons"
-      }, "done")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          width: "150px"
+        }
+      }, images[this.state.product[0] - 1]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         style: {
           margin: "10px",
           fontSize: "20px"
         }
-      }, " ", this.state.qtyDisp, " products added to your cart!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Modal"].Footer, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Button"], {
+      }, " ", this.state.qtyDisp, " ", this.state.product[1], " added to your cart!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Modal"].Footer, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Button"], {
         onClick: function onClick() {
-          _this3.handleModal();
+          _this4.handleModal();
         }
       }, "Continue Shopping"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Button"], {
         onClick: function onClick() {
-          _this3.handleGo();
+          _this4.handleGo();
         }
       }, "Go to cart(", this.state.counter, ")"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Modal"], {
         id: "#modalZero",
         show: this.state.showZero,
         onHide: function onHide() {
-          _this3.handleModalZero();
+          _this4.handleModalZero();
         }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Modal"].Header, {
         closeButton: true
@@ -89681,8 +89706,6 @@ var TableRow = /*#__PURE__*/function (_Component) {
           margin: "10px"
         }
       }, "Menu:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "row justify-content-center mb-5"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row justify-content-center"
       }, this.state.products.map(function (data, mykey) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -89710,9 +89733,9 @@ var TableRow = /*#__PURE__*/function (_Component) {
           min: "1",
           max: "10",
           ref: "quantity",
-          placeholder: "1",
+          defaultValue: "1",
           onChange: function onChange(e) {
-            _this3.qty(e);
+            _this4.qty(e);
           }
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           type: "submit",
@@ -89723,7 +89746,7 @@ var TableRow = /*#__PURE__*/function (_Component) {
           },
           className: "btn",
           onClick: function onClick(e) {
-            _this3.handleSubmit3(e, data.id);
+            _this4.handleSubmit3(e, data.id);
           }
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
           style: {

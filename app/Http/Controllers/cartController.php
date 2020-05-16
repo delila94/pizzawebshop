@@ -79,6 +79,12 @@ public function clearCart()
        return Cart::getContent();
     }
 }
+public function item(Request $res){
+    $id=$res->id;
+    $data=product::find($id);
+    return $data;
+    
+}
 
 
 }

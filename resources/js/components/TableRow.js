@@ -8,7 +8,7 @@ class TableRow extends Component {
       super(props);
       super();
      
-      this.state={qty:'1',qtyDisp:'1',hello:'Say Hello to learning Props/State in React!',counter:0,products:[],id:'',cart:[], showZero: false, show: false}
+      this.state={qty:'1',qtyDisp:'1',product:[],counter:0,products:[],id:'',cart:[], showZero: false, show: false}
       this.handleSubmit3 = this.handleSubmit3.bind(this);
       this.qty = this.qty.bind(this);
       this.id = this.id.bind(this);
@@ -45,7 +45,7 @@ class TableRow extends Component {
     e.preventDefault();
     axios.post('add',{qty:this.state.qty,
       id:id})
-      this.setState({show: !this.state.show});
+      this.handleModal(id);
       this.setState({counter:this.state.counter+parseInt(this.state.qty)});
       //this.setState({counter:this.state.qty},console.log(this.state.qty));
     // this.setState({counter:this.state.counter+parseInt(this.state.qty)}, ()=>{this.props.functionCallFromParent(this.state.counter)});
@@ -66,8 +66,15 @@ componentDidMount()
     console.log(error);
   })
 }
-handleModal() {
+handleModal(id) {
   this.setState({show: !this.state.show});
+  axios.post('item',{id:id})
+    .then(res=> {
+   // console.log(res.data)
+    this.setState({product: Object.values(res.data)}
+    ); 
+    } );
+    console.log(this.state.product[0]);
 }
 handleModalZero() {
   this.setState({showZero: !this.state.showZero});
@@ -81,7 +88,7 @@ childFunction(){
             </div>*/
   render() {
 
-    let array = ["4", "1", "2", "3", "0", "5", "6", "7","8","9","10","11"];
+    let array = [ "1", "2", "3", "4", "5", "6", "7","8","9","10","11","12"];
     let images = array.map(image => {
     return <img key={image} src={require(`./${image}.png`)} style={{width:"70%", height:"auto"}} alt="" className="img-responsive" />
     });
@@ -90,8 +97,9 @@ childFunction(){
        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></link>
            <Modal id="#addedToCart" show={this.state.show} onHide={()=>{this.handleModal()}}>
           <Modal.Header closeButton> Pizza Yummi</Modal.Header>
-          <Modal.Body className="row justify-content-center" > <span><i style={{color:"green",fontSize:"40px"}} className="material-icons">done</i></span> 
-    <p style={{margin:"10px", fontSize:"20px"}}> {this.state.qtyDisp} products added to your cart!</p></Modal.Body>
+          <Modal.Body className="row justify-content-center" >       
+    <p style={{width:"150px"}}>{ images[this.state.product[0]-1] }</p>
+    <p style={{margin:"10px", fontSize:"20px"}}> {this.state.qtyDisp} {this.state.product[1]} added to your cart!</p></Modal.Body>
           <Modal.Footer>
             <Button onClick={()=>{this.handleModal()}}>Continue Shopping</Button>
             <Button  onClick={()=>{this.handleGo()}}>Go to cart({this.state.counter})</Button>
@@ -102,9 +110,6 @@ childFunction(){
           <Modal.Body> <p className="row justify-content-center">Please choose number bigger than 0 </p></Modal.Body>
         </Modal>
       <h2 style={{margin:"10px"}}>Menu:</h2>
-
-      <div className="row justify-content-center mb-5">
-      </div>
          <div className="row justify-content-center">
              {this.state.products.map((data,mykey)=>
           <div className="col-lg 6 col-md-6 col-sm-12 col-xs-12"  key={mykey}>
@@ -121,7 +126,7 @@ childFunction(){
                             </div>
                             
                             <div  style={{margin:"5px"}} > 
-                            Quantity:  <input type="number" min="1" max="10" ref="quantity"  placeholder="1" onChange={(e)=> {this.qty(e)}}></input>
+                            Quantity:  <input type="number" min="1" max="10" ref="quantity"  defaultValue="1" onChange={(e)=> {this.qty(e)}}></input>
                              <button type="submit" style={{width:"40%", marginTop:"7px",color:"#313184"}} className="btn" onClick={(e)=>{this.handleSubmit3(e,data.id)}}><i style={{fontSize:"40px"}} className="material-icons">add_shopping_cart</i></button>
                              </div>
                         </div>
