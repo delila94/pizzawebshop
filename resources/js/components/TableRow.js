@@ -8,7 +8,7 @@ class TableRow extends Component {
       super(props);
       super();
      
-      this.state={qty:'1',qtyDisp:'1',product:[],counter:0,products:[],id:'',cart:[], showZero: false, show: false}
+      this.state={qty:'1',qtyDisp:'1',Oneproduct:[],counter:0,products:[],id:'',cart:[], showZero: false, show: false}
       this.handleSubmit3 = this.handleSubmit3.bind(this);
       this.qty = this.qty.bind(this);
       this.id = this.id.bind(this);
@@ -46,7 +46,7 @@ class TableRow extends Component {
     axios.post('add',{qty:this.state.qty,
       id:id})
     
-      this.setState({counter:this.state.counter+parseInt(this.state.qty)});
+     // this.setState({counter:this.state.counter+parseInt(this.state.qty)});
       //this.setState({counter:this.state.qty},console.log(this.state.qty));
     // this.setState({counter:this.state.counter+parseInt(this.state.qty)}, ()=>{this.props.functionCallFromParent(this.state.counter)});
     
@@ -71,7 +71,7 @@ handleModal(id) {
   axios.post('item',{id:id})
     .then(res=> {
    // console.log(res.data)
-    this.setState({product: Object.values(res.data)}
+    this.setState({Oneproduct: Object.values(res.data)}
     ); 
     } );
    // console.log(this.state.product[0]);
@@ -98,11 +98,11 @@ childFunction(){
            <Modal id="#addedToCart" show={this.state.show} onHide={()=>{this.handleModal()}}>
           <Modal.Header closeButton> Pizza Yummi</Modal.Header>
           <Modal.Body className="row justify-content-center" >       
-    <p style={{width:"150px"}}>{ images[this.state.product[0]-1] }</p>
-    <p style={{margin:"10px", fontSize:"20px"}}> {this.state.qtyDisp} {this.state.product[1]} added to your cart!</p></Modal.Body>
+    <p style={{width:"150px"}}>{ images[this.state.Oneproduct[0]-1] }</p>
+    <p style={{margin:"10px", fontSize:"20px"}}> {this.state.qtyDisp} {this.state.Oneproduct[1]} added to your cart!</p></Modal.Body>
           <Modal.Footer>
             <Button onClick={()=>{this.handleModal()}}>Continue Shopping</Button>
-            <Button  onClick={()=>{this.handleGo()}}>Go to cart({this.state.counter})</Button>
+            <Button  onClick={()=>{this.handleGo()}}>Go to cart</Button>
           </Modal.Footer>
         </Modal>
         <Modal id="#modalZero" show={this.state.showZero} onHide={()=>{this.handleModalZero()}}>

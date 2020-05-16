@@ -216,28 +216,28 @@ contactSubmit(e){
     <h2 style={{margin:"20px"}}>Review your order:</h2>
     
 </div>
-<div className="container text-center justify-content-cente">
+<div className="text-center justify-content-cente">
 <div className="row ">
              {this.state.products.map((data,mykey)=>
           <div className="col-lg 6 col-md-6 col-sm-12 col-xs-12"  key={mykey}>
             <div className="card mb-4 ml-2 mr-2 " style={{width: "260px"}}  >
 
-  <p class="card-img-top">{images[data.id-1]} </p>
-      <div class="card-body">
-    <h5 class="card-title">{data.name}</h5>
-<p class="card-text">{data.description}</p>
+  <p className="card-img-top">{images[data.id-1]} </p>
+      <div className="card-body">
+    <h5 className="card-title">{data.name}</h5>
+<p className="card-text">{data.description}</p>
   </div>
-  <ul class="list-group list-group-flush">
-<li class="list-group-item">Price: {data.price}$({Math.floor(data.price*0.92 * 100) / 100}€)</li>
-             <li class="list-group-item">Total Qty: <b>{data.quantity}</b> 
+  <ul className="list-group list-group-flush">
+<li className="list-group-item">Price: {data.price}$({Math.floor(data.price*0.92 * 100) / 100}€)</li>
+             <li className="list-group-item">Total Qty: <b>{data.quantity}</b> 
       </li>
-      <li class="list-group-item">Total: <b>{data.quantity*data.price}$({Math.floor(data.quantity*data.price*0.92 * 100) / 100 }€)</b>
+      <li className="list-group-item">Total: <b>{data.quantity*data.price}$({Math.floor(data.quantity*data.price*0.92 * 100) / 100 }€)</b>
       </li>
-    <li class="list-group-item">Update: <button  style={{margin: "0px"}} className="btn" type="button" onClick={(e)=> this.updateCart(data.id,1)}><i style={{fontSize:"30px"}} className="material-icons">add_circle_outline</i></button>
+    <li className="list-group-item">Update: <button  style={{margin: "0px"}} className="btn" type="button" onClick={(e)=> this.updateCart(data.id,1)}><i style={{fontSize:"30px"}} className="material-icons">add_circle_outline</i></button>
        <button  style={{marginLeft: "0px"}} className="btn" disabled={data.quantity==1} type="button" onClick={(e)=> this.updateCart(data.id,-1)}><i style={{fontSize:"30px"}} className="material-icons">remove_circle_outline</i></button>
       </li>
   </ul>
-  <div class="card-body row justify-content-center">
+  <div className="card-body row justify-content-center">
   <button type="button" onClick={(e)=>this.handleSubmitRemove(data.id)} className="btn btn-danger">Remove</button>
   </div>
   </div>
@@ -250,7 +250,7 @@ contactSubmit(e){
       <div className="row justify-content-center">
         <div className="col-lg-6">
         <h4 style={{margin:"20px"}}>Order Summary €:</h4>
-<table class="table table-borderless table-hover" style={{width:"400px", margin:"30px"}}>
+<table className="table table-borderless table-hover" style={{width:"400px", margin:"30px"}}>
     <tbody>
         <tr>
           <th >Subtotal: €</th>
@@ -271,7 +271,7 @@ contactSubmit(e){
         </div>
         <div className="col-lg-6">
         <h4 style={{margin:"20px"}}>Order Summary $:</h4>
-<table class="table table-borderless table-hover" style={{width:"400px", margin:"30px"}}>
+<table className="table table-borderless table-hover" style={{width:"400px", margin:"30px"}}>
     <tbody>
         <tr>
           <th >Subtotal: $</th>

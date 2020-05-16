@@ -88735,7 +88735,7 @@ var CartChosen = /*#__PURE__*/function (_Component) {
           margin: "20px"
         }
       }, "Review your order:")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "container text-center justify-content-cente"
+        className: "text-center justify-content-cente"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row "
       }, this.state.products.map(function (data, mykey) {
@@ -88748,23 +88748,23 @@ var CartChosen = /*#__PURE__*/function (_Component) {
             width: "260px"
           }
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-          "class": "card-img-top"
+          className: "card-img-top"
         }, images[data.id - 1], " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          "class": "card-body"
+          className: "card-body"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
-          "class": "card-title"
+          className: "card-title"
         }, data.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-          "class": "card-text"
+          className: "card-text"
         }, data.description)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-          "class": "list-group list-group-flush"
+          className: "list-group list-group-flush"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-          "class": "list-group-item"
+          className: "list-group-item"
         }, "Price: ", data.price, "$(", Math.floor(data.price * 0.92 * 100) / 100, "\u20AC)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-          "class": "list-group-item"
+          className: "list-group-item"
         }, "Total Qty: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, data.quantity)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-          "class": "list-group-item"
+          className: "list-group-item"
         }, "Total: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, data.quantity * data.price, "$(", Math.floor(data.quantity * data.price * 0.92 * 100) / 100, "\u20AC)")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-          "class": "list-group-item"
+          className: "list-group-item"
         }, "Update: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           style: {
             margin: "0px"
@@ -88795,7 +88795,7 @@ var CartChosen = /*#__PURE__*/function (_Component) {
           },
           className: "material-icons"
         }, "remove_circle_outline")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          "class": "card-body row justify-content-center"
+          className: "card-body row justify-content-center"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           type: "button",
           onClick: function onClick(e) {
@@ -88814,7 +88814,7 @@ var CartChosen = /*#__PURE__*/function (_Component) {
           margin: "20px"
         }
       }, "Order Summary \u20AC:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
-        "class": "table table-borderless table-hover",
+        className: "table table-borderless table-hover",
         style: {
           width: "400px",
           margin: "30px"
@@ -88830,7 +88830,7 @@ var CartChosen = /*#__PURE__*/function (_Component) {
           margin: "20px"
         }
       }, "Order Summary $:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
-        "class": "table table-borderless table-hover",
+        className: "table table-borderless table-hover",
         style: {
           width: "400px",
           margin: "30px"
@@ -89520,7 +89520,7 @@ var TableRow = /*#__PURE__*/function (_Component) {
     _this.state = {
       qty: '1',
       qtyDisp: '1',
-      product: [],
+      Oneproduct: [],
       counter: 0,
       products: [],
       id: '',
@@ -89575,10 +89575,8 @@ var TableRow = /*#__PURE__*/function (_Component) {
       axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('add', {
         qty: this.state.qty,
         id: id
-      });
-      this.setState({
-        counter: this.state.counter + parseInt(this.state.qty)
-      }); //this.setState({counter:this.state.qty},console.log(this.state.qty));
+      }); // this.setState({counter:this.state.counter+parseInt(this.state.qty)});
+      //this.setState({counter:this.state.qty},console.log(this.state.qty));
       // this.setState({counter:this.state.counter+parseInt(this.state.qty)}, ()=>{this.props.functionCallFromParent(this.state.counter)});
       //} 
 
@@ -89619,7 +89617,7 @@ var TableRow = /*#__PURE__*/function (_Component) {
       }).then(function (res) {
         // console.log(res.data)
         _this3.setState({
-          product: Object.values(res.data)
+          Oneproduct: Object.values(res.data)
         });
       }); // console.log(this.state.product[0]);
     }
@@ -89676,12 +89674,12 @@ var TableRow = /*#__PURE__*/function (_Component) {
         style: {
           width: "150px"
         }
-      }, images[this.state.product[0] - 1]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      }, images[this.state.Oneproduct[0] - 1]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         style: {
           margin: "10px",
           fontSize: "20px"
         }
-      }, " ", this.state.qtyDisp, " ", this.state.product[1], " added to your cart!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Modal"].Footer, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Button"], {
+      }, " ", this.state.qtyDisp, " ", this.state.Oneproduct[1], " added to your cart!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Modal"].Footer, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Button"], {
         onClick: function onClick() {
           _this4.handleModal();
         }
@@ -89689,7 +89687,7 @@ var TableRow = /*#__PURE__*/function (_Component) {
         onClick: function onClick() {
           _this4.handleGo();
         }
-      }, "Go to cart(", this.state.counter, ")"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Modal"], {
+      }, "Go to cart"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Modal"], {
         id: "#modalZero",
         show: this.state.showZero,
         onHide: function onHide() {
