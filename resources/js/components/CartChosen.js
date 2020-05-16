@@ -208,9 +208,9 @@ contactSubmit(e){
             <Button variant="danger" onClick={()=>{this.handleModalEmpty()}}>Close</Button>
           </Modal.Footer>
         </Modal>
-        <div style={{width: "55%", float:"left",marginRight:"25px"}}>
+        <div style={{marginRight:"25px"}}>
     <h2 style={{margin:"20px"}}>Review your order:</h2>
-    <table className="table table-info table-hover table-responsive{-sm|-md|-lg|-xl} ">          
+    <table className="table table-info table-hover table-sm table-responsive{-sm|-md|-lg|-xl} ">          
     <thead>
       
        <tr>
@@ -238,8 +238,8 @@ contactSubmit(e){
       <button type="button" onClick={(e)=>this.handleSubmitRemove(data.id)} className="btn btn-danger"><i style={{fontSize:"15px"}} className="material-icons">remove_circle</i></button>
       </td>
       <td>
-       <button  style={{margin: "1px"}} className="btn" type="button" onClick={(e)=> this.updateCart(data.id,1)}><i style={{fontSize:"30px"}} className="material-icons">add_circle_outline</i></button>
-       <button  style={{marginLeft: "-20px"}} className="btn" disabled={data.quantity==1} type="button" onClick={(e)=> this.updateCart(data.id,-1)}><i style={{fontSize:"30px"}} className="material-icons">remove_circle_outline</i></button>
+       <button  style={{margin: "0px"}} className="btn" type="button" onClick={(e)=> this.updateCart(data.id,1)}><i style={{fontSize:"30px"}} className="material-icons">add_circle_outline</i></button>
+       <button  style={{marginLeft: "0px"}} className="btn" disabled={data.quantity==1} type="button" onClick={(e)=> this.updateCart(data.id,-1)}><i style={{fontSize:"30px"}} className="material-icons">remove_circle_outline</i></button>
       </td>
     
    </tr>
@@ -249,28 +249,11 @@ contactSubmit(e){
 </table>
 </div>   
 
-<div style={{width: "40%", float:"left",backgroundColor:"#e6e6e6",margin:"15px",border:"solid"}}>
-  <h4 style={{margin:"20px"}}>Order Summary $:</h4>
-<table class="table table-borderless" style={{width:"400px", margin:"30px"}}>
-    <tbody>
-        <tr>
-          <th >Subtotal: $</th>
-            <td>{this.state.total}$</td>   
-        </tr>
-        
-        <tr>
-          <th>Shipping$:</th>
-            <td>{this.state.shipping}$</td>
-        </tr>
-        <tr>
-          <th>Order total:</th>
-            <td>{this.state.total+this.state.shipping}$</td>
-        </tr>
-    </tbody>
-</table>
-</div>
-<div style={{width: "40%", float:"right",backgroundColor:"#f2f2f2",margin:"25px",border:"solid"}}>
-  <h4 style={{margin:"20px"}}>Order Summary €:</h4>
+
+<div className="container text-center">
+      <div className="row justify-content-center">
+        <div className="col-md-6">
+        <h4 style={{margin:"20px"}}>Order Summary €:</h4>
 <table class="table table-borderless" style={{width:"400px", margin:"30px"}}>
     <tbody>
         <tr>
@@ -289,12 +272,34 @@ contactSubmit(e){
 
     </tbody>
 </table>
-</div>
-<div  style={{width: "50%",margin:"25px",textAlign:"center"}}>
+        </div>
+        <div className="col-md-6">
+        <h4 style={{margin:"20px"}}>Order Summary $:</h4>
+<table class="table table-borderless" style={{width:"400px", margin:"30px"}}>
+    <tbody>
+        <tr>
+          <th >Subtotal: $</th>
+            <td>{this.state.total}$</td>   
+        </tr>
+        
+        <tr>
+          <th>Shipping$:</th>
+            <td>{this.state.shipping}$</td>
+        </tr>
+        <tr>
+          <th>Order total:</th>
+            <td>{this.state.total+this.state.shipping}$</td>
+        </tr>
+    </tbody>
+</table>
+        </div>
+        </div>
+        </div>
+<div  style={{margin:"25px",textAlign:"center"}}>
 <button className="btn btn-danger justify-content-md-center btn-lg" onClick={this.handleSubmitClear} syle={{margin: "30px" ,display: "block"}}>Clear Cart</button> 
 </div>
 <div style={{ marginTop:"10px"}}>
-<h1 >Shipping Address</h1>
+<h2 >Shipping Address</h2>
 </div>
 <div  style={{width: "50%"}}>
 <form onSubmit={this.handleSubmit} >

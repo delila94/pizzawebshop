@@ -1,27 +1,45 @@
 import React, {Component} from 'react';
 import { Router, Route, Link } from 'react-router';
-
+import TableRow from './TableRow';
 class Master extends Component {
+  constructor(props){
+    super(props);
+    this.state={
+        value_key:""
+    }
+}
+parentFunction(data_from_child){
+  this.setState({value_key:data_from_child});
+}
+//<TableRow functionCallFromParent={this.parentFunction.bind(this)}/>
+//<h1>ddd{this.state.value_key}</h1>
+
   render(){
     return (
       <div >
    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></link>
-<nav className="navbar navbar-expand-lg" style={{backgroundColor:"#313184"}}>
-  <a className="navbar-brand" style={{color:"white"}} href="/">Pizza Yummi</a>
-  <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-    <span className="navbar-toggler-icon"></span>
+
+<nav class="navbar navbar-expand-lg navbar-light" style={{color:"white" ,backgroundColor:"#313184"}}>
+<a className="navbar-brand" style={{color:"white"}} href="/">Pizza Yummi</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
   </button>
-  <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div className="navbar-nav">
-      <a className="nav-item nav-link active" style={{color:"white"}} href="/">Home <span className="sr-only">(current)</span></a>
-      <a className="nav-item nav-link" style={{color:"white"}} href="#/display-item">Order Online</a>   
-    </div>
-  </div>
-  <div className="form-inline my-2 my-lg-0">
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" style={{color:"white"}} href="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" style={{color:"white"}} href="#/display-item">Order Online</a>
+      </li>
+    </ul>
+    <div className="form-inline my-2 my-lg-0">
   <a className="nav-item nav-link" style={{color:"white"}} href="#/cartChosen"><i style={{fontSize:"45px"}} className="material-icons">shopping_cart</i></a>
-    </div>
+   </div>
+  </div>
 </nav>
-           
+ 
           <div>
               {this.props.children}
           </div>   

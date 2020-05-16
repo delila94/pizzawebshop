@@ -4,6 +4,7 @@ import { hashHistory } from 'react-router';
 class OrderCompleted extends Component {
   constructor(props) {
        super(props);
+       this.state={bla:"delila"};
        this.handleSubmit=this.handleSubmit.bind(this);
      }
    
