@@ -88764,7 +88764,9 @@ var CartChosen = /*#__PURE__*/function (_Component) {
           "class": "list-group-item"
         }, "Price: ", data.price, "$(", Math.floor(data.price * 0.92 * 100) / 100, "\u20AC)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           "class": "list-group-item"
-        }, "Total: ", data.quantity * data.price, "(", Math.floor(data.quantity * data.price * 0.92 * 100) / 100, "\u20AC)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        }, "Total Qty: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, data.quantity)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          "class": "list-group-item"
+        }, "Total: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, data.quantity * data.price, "(", Math.floor(data.quantity * data.price * 0.92 * 100) / 100, "\u20AC)")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           "class": "list-group-item"
         }, "Update: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           style: {

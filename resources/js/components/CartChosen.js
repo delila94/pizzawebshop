@@ -229,7 +229,9 @@ contactSubmit(e){
   </div>
   <ul class="list-group list-group-flush">
 <li class="list-group-item">Price: {data.price}$({Math.floor(data.price*0.92 * 100) / 100}€)</li>
-    <li class="list-group-item">Total: {data.quantity*data.price}({Math.floor(data.quantity*data.price*0.92 * 100) / 100 }€)
+             <li class="list-group-item">Total Qty: <b>{data.quantity}</b> 
+      </li>
+      <li class="list-group-item">Total: <b>{data.quantity*data.price}({Math.floor(data.quantity*data.price*0.92 * 100) / 100 }€)</b>
       </li>
     <li class="list-group-item">Update: <button  style={{margin: "0px"}} className="btn" type="button" onClick={(e)=> this.updateCart(data.id,1)}><i style={{fontSize:"30px"}} className="material-icons">add_circle_outline</i></button>
        <button  style={{marginLeft: "0px"}} className="btn" disabled={data.quantity==1} type="button" onClick={(e)=> this.updateCart(data.id,-1)}><i style={{fontSize:"30px"}} className="material-icons">remove_circle_outline</i></button>
