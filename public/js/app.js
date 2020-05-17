@@ -89533,6 +89533,7 @@ var TableRow = /*#__PURE__*/function (_Component) {
     _this.id = _this.id.bind(_assertThisInitialized(_this));
     _this.handleGo = _this.handleGo.bind(_assertThisInitialized(_this));
     _this.handleModal = _this.handleModal.bind(_assertThisInitialized(_this));
+    _this.handleModalClose = _this.handleModalClose.bind(_assertThisInitialized(_this));
     _this.childFunction = _this.childFunction.bind(_assertThisInitialized(_this));
     return _this;
   }
@@ -89578,10 +89579,8 @@ var TableRow = /*#__PURE__*/function (_Component) {
       }); // this.setState({counter:this.state.counter+parseInt(this.state.qty)});
       //this.setState({counter:this.state.qty},console.log(this.state.qty));
       // this.setState({counter:this.state.counter+parseInt(this.state.qty)}, ()=>{this.props.functionCallFromParent(this.state.counter)});
-
-      this.setState({
-        show: !this.state.show
-      }); //} 
+      // this.setState({show: !this.state.show});
+      //} 
 
       if (this.state.qty == 1) {
         this.setState({
@@ -89591,7 +89590,8 @@ var TableRow = /*#__PURE__*/function (_Component) {
 
       this.setState({
         qty: '1'
-      }); // this.handleModal(id);
+      });
+      this.handleModal(id);
     }
   }, {
     key: "componentDidMount",
@@ -89611,13 +89611,18 @@ var TableRow = /*#__PURE__*/function (_Component) {
     value: function handleModal(id) {
       this.setState({
         show: !this.state.show
-      }); // axios.post('item',{id:id})
-      //  .then(res=> {
-      // console.log(res.data)
-      //  this.setState({Oneproduct: Object.values(res.data)}
-      //  ); 
-      //   } );
-      // console.log(this.state.product[0]);
+      });
+      var prod = Object.values(this.state.products[id - 1]);
+      this.setState({
+        Oneproduct: prod
+      });
+    }
+  }, {
+    key: "handleModalClose",
+    value: function handleModalClose(id) {
+      this.setState({
+        show: !this.state.show
+      }); //   } );
     }
   }, {
     key: "handleModalZero",
@@ -89662,7 +89667,7 @@ var TableRow = /*#__PURE__*/function (_Component) {
         id: "#addedToCart",
         show: this.state.show,
         onHide: function onHide() {
-          _this3.handleModal();
+          _this3.handleModalClose();
         }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Modal"].Header, {
         closeButton: true
@@ -89670,12 +89675,16 @@ var TableRow = /*#__PURE__*/function (_Component) {
         className: "row justify-content-center"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         style: {
+          width: "150px"
+        }
+      }, images[this.state.Oneproduct[0] - 1]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        style: {
           margin: "10px",
           fontSize: "20px"
         }
-      }, " ", this.state.qtyDisp, " product added to your cart!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Modal"].Footer, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Button"], {
+      }, " ", this.state.qtyDisp, " ", this.state.Oneproduct[1], " added to your cart!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Modal"].Footer, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Button"], {
         onClick: function onClick() {
-          _this3.handleModal();
+          _this3.handleModalClose();
         }
       }, "Continue Shopping"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Button"], {
         onClick: function onClick() {

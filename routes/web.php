@@ -36,7 +36,6 @@ Route::get('total', function(){
    Route::post('remove','cartController@removeCart');
    Route::post('update', 'cartController@updateCart');
    Route::get('remove','cartController@removeCart');
-   Route::post('item','cartController@item');
 Auth::routes();
 
 
