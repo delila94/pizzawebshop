@@ -88726,11 +88726,7 @@ var CartChosen = /*#__PURE__*/function (_Component) {
         onClick: function onClick() {
           _this5.handleModalEmpty();
         }
-      }, "Close"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        style: {
-          marginRight: "25px"
-        }
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+      }, "Close"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
         style: {
           margin: "20px"
         }
@@ -88809,32 +88805,16 @@ var CartChosen = /*#__PURE__*/function (_Component) {
         className: "row justify-content-center"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-lg-6"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
-        style: {
-          margin: "20px"
-        }
-      }, "Order Summary \u20AC:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
-        className: "table table-borderless table-hover",
-        style: {
-          width: "400px",
-          margin: "30px"
-        }
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Order Summary \u20AC:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
+        className: "table table-borderless table-hover"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Subtotal: \u20AC"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, Math.floor(this.state.total * 0.92 * 100) / 100, "\u20AC")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Shipping \u20AC:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, Math.floor(this.state.shipping * 0.92 * 100) / 100, "\u20AC")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Order total:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
         style: {
           textDecoration: "bold"
         }
       }, Math.floor((this.state.total + this.state.shipping) * 0.92 * 100) / 100, "\u20AC"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-lg-6"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
-        style: {
-          margin: "20px"
-        }
-      }, "Order Summary $:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
-        className: "table table-borderless table-hover",
-        style: {
-          width: "400px",
-          margin: "30px"
-        }
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Order Summary $:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
+        className: "table table-borderless table-hover"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Subtotal: $"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, this.state.total, "$")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Shipping$:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, this.state.shipping, "$")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Order total:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, this.state.total + this.state.shipping, "$"))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         style: {
           margin: "25px",
@@ -88848,14 +88828,8 @@ var CartChosen = /*#__PURE__*/function (_Component) {
           display: "block"
         }
       }, "Clear Cart")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        style: {
-          marginTop: "10px"
-        }
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Shipping Address")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        style: {
-          width: "50%"
-        }
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        className: "col-lg-6"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Shipping Address"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
@@ -89525,7 +89499,6 @@ var TableRow = /*#__PURE__*/function (_Component) {
       products: [],
       id: '',
       cart: [],
-      showZero: false,
       show: false
     };
     _this.handleSubmit3 = _this.handleSubmit3.bind(_assertThisInitialized(_this));
@@ -89547,19 +89520,12 @@ var TableRow = /*#__PURE__*/function (_Component) {
     key: "qty",
     value: function qty(e) {
       e.preventDefault();
-
-      if (e.target.value > 0) {
-        this.setState({
-          qty: e.target.value
-        });
-        this.setState({
-          qtyDisp: e.target.value
-        });
-      } else {
-        this.setState({
-          showZero: !this.state.showZero
-        });
-      }
+      this.setState({
+        qty: e.target.value
+      });
+      this.setState({
+        qtyDisp: e.target.value
+      });
     }
   }, {
     key: "id",
@@ -89619,16 +89585,9 @@ var TableRow = /*#__PURE__*/function (_Component) {
     }
   }, {
     key: "handleModalClose",
-    value: function handleModalClose(id) {
+    value: function handleModalClose() {
       this.setState({
         show: !this.state.show
-      }); //   } );
-    }
-  }, {
-    key: "handleModalZero",
-    value: function handleModalZero() {
-      this.setState({
-        showZero: !this.state.showZero
       });
     }
   }, {
@@ -89690,17 +89649,7 @@ var TableRow = /*#__PURE__*/function (_Component) {
         onClick: function onClick() {
           _this3.handleGo();
         }
-      }, "Go to cart"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Modal"], {
-        id: "#modalZero",
-        show: this.state.showZero,
-        onHide: function onHide() {
-          _this3.handleModalZero();
-        }
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Modal"].Header, {
-        closeButton: true
-      }, " Pizza Yummi"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Modal"].Body, null, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "row justify-content-center"
-      }, "Please choose number bigger than 0 "))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+      }, "Go to cart"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
         style: {
           margin: "10px"
         }
@@ -89727,16 +89676,32 @@ var TableRow = /*#__PURE__*/function (_Component) {
           style: {
             margin: "5px"
           }
-        }, "Quantity:  ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          type: "number",
-          min: "1",
-          max: "10",
-          ref: "quantity",
-          defaultValue: "1",
+        }, "Quantity:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
           onChange: function onChange(e) {
             _this3.qty(e);
           }
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+          "default": true,
+          value: "1"
+        }, "1"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+          value: "2"
+        }, "2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+          value: "3"
+        }, "3"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+          value: "4"
+        }, "4"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+          value: "5"
+        }, "5"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+          value: "6"
+        }, "6"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+          value: "7"
+        }, "7"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+          value: "8"
+        }, "8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+          value: "9"
+        }, "9"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+          value: "10"
+        }, "10")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           type: "submit",
           style: {
             width: "40%",

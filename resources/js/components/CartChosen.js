@@ -212,7 +212,7 @@ contactSubmit(e){
             <Button variant="danger" onClick={()=>{this.handleModalEmpty()}}>Close</Button>
           </Modal.Footer>
         </Modal>
-        <div style={{marginRight:"25px"}}>
+        <div>
     <h2 style={{margin:"20px"}}>Review your order:</h2>
     
 </div>
@@ -249,8 +249,8 @@ contactSubmit(e){
 <div className="container text-center">
       <div className="row justify-content-center">
         <div className="col-lg-6">
-        <h4 style={{margin:"20px"}}>Order Summary €:</h4>
-<table className="table table-borderless table-hover" style={{width:"400px", margin:"30px"}}>
+        <h4>Order Summary €:</h4>
+<table className="table table-borderless table-hover">
     <tbody>
         <tr>
           <th >Subtotal: €</th>
@@ -270,8 +270,8 @@ contactSubmit(e){
 </table>
         </div>
         <div className="col-lg-6">
-        <h4 style={{margin:"20px"}}>Order Summary $:</h4>
-<table className="table table-borderless table-hover" style={{width:"400px", margin:"30px"}}>
+        <h4>Order Summary $:</h4>
+<table className="table table-borderless table-hover">
     <tbody>
         <tr>
           <th >Subtotal: $</th>
@@ -294,10 +294,8 @@ contactSubmit(e){
 <div  style={{margin:"25px",textAlign:"center"}}>
 <button className="btn btn-danger justify-content-md-center btn-lg" onClick={this.handleSubmitClear} syle={{margin: "30px" ,display: "block"}}>Clear Cart</button> 
 </div>
-<div style={{ marginTop:"10px"}}>
+<div  className="col-lg-6">
 <h2 >Shipping Address</h2>
-</div>
-<div  style={{width: "50%"}}>
 <form onSubmit={this.handleSubmit} >
 <div className="form-group">
     <label >First Name</label>

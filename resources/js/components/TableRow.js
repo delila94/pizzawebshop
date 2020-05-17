@@ -8,7 +8,7 @@ class TableRow extends Component {
       super(props);
       super();
      
-      this.state={qty:'1',qtyDisp:'1',Oneproduct:[],counter:0,products:[],id:'',cart:[], showZero: false, show: false}
+      this.state={qty:'1',qtyDisp:'1',Oneproduct:[],counter:0,products:[],id:'',cart:[], show: false}
       this.handleSubmit3 = this.handleSubmit3.bind(this);
       this.qty = this.qty.bind(this);
       this.id = this.id.bind(this);
@@ -26,14 +26,9 @@ class TableRow extends Component {
   qty(e)
    {
     e.preventDefault()
-    if(e.target.value>0)
-    {
-    this.setState({qty:e.target.value}); 
+      this.setState({qty:e.target.value}); 
     this.setState({qtyDisp:e.target.value});  
-    }
-    else {
-      this.setState({showZero: !this.state.showZero}); 
-    }  
+     
   }
   id(e) 
   {
@@ -74,14 +69,8 @@ handleModal(id) {
    ); 
     
 }
-handleModalClose(id) {
-  this.setState({show: !this.state.show});
- 
- //   } );
-    
-}
-handleModalZero() {
-  this.setState({showZero: !this.state.showZero});
+handleModalClose() {
+  this.setState({show: !this.state.show});  
 }
 childFunction(){
   
@@ -109,10 +98,7 @@ childFunction(){
             <Button  onClick={()=>{this.handleGo()}}>Go to cart</Button>
           </Modal.Footer>
         </Modal>
-        <Modal id="#modalZero" show={this.state.showZero} onHide={()=>{this.handleModalZero()}}>
-          <Modal.Header closeButton> Pizza Yummi</Modal.Header>
-          <Modal.Body> <p className="row justify-content-center">Please choose number bigger than 0 </p></Modal.Body>
-        </Modal>
+        
       <h2 style={{margin:"10px"}}>Menu:</h2>
          <div className="row justify-content-center">
              {this.state.products.map((data,mykey)=>
@@ -130,8 +116,20 @@ childFunction(){
                             </div>
                             
                             <div  style={{margin:"5px"}} > 
-                            Quantity:  <input type="number" min="1" max="10" ref="quantity"  defaultValue="1" onChange={(e)=> {this.qty(e)}}></input>
-                             <button type="submit" style={{width:"40%", marginTop:"7px",color:"#313184"}} className="btn" onClick={(e)=>{this.handleSubmit3(e,data.id)}}><i style={{fontSize:"40px"}} className="material-icons">add_shopping_cart</i></button>
+                            Quantity: 
+                            <select onChange={(e)=> {this.qty(e)}}>
+                            <option default value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                             </select>
+                              <button type="submit" style={{width:"40%", marginTop:"7px",color:"#313184"}} className="btn" onClick={(e)=>{this.handleSubmit3(e,data.id)}}><i style={{fontSize:"40px"}} className="material-icons">add_shopping_cart</i></button>
                              </div>
                         </div>
            </div>
