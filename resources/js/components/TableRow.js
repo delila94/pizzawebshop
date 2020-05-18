@@ -15,7 +15,7 @@ class TableRow extends Component {
       this.handleGo = this.handleGo.bind(this);
       this.handleModal = this.handleModal.bind(this);
       this.handleModalClose = this.handleModalClose.bind(this);
-      this.childFunction=this.childFunction.bind(this);
+
   }
 
   handleGo(e)
