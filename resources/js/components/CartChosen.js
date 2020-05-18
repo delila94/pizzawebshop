@@ -6,7 +6,7 @@ import {Button, Modal} from 'react-bootstrap';
 class CartChosen extends Component {
   constructor(props) {
       super(props);
-      this.state={products:[],total:'',qty:'',shipping:0,totalShip:'0',show: false,showEmpty:false, fields:{name: '',lname: '',address: '',email: '',phone:''}, errors:{}}
+      this.state={products:[],total:'',qty:'',shipping:0,totalShip:'0',show: false,showEmpty:false, fields:{name: '',lname: '',address: '',email: '',phone:'',city:'',zip:''}, errors:{}}
       this.handleSubmitClear = this.handleSubmitClear.bind(this);
       this.handleSubmitRemove = this.handleSubmitRemove.bind(this);
       this.updateCart = this.updateCart.bind(this);
@@ -159,10 +159,26 @@ handleValidation(){
           formIsValid = false;
           errors["email"] = "Email is not valid";
         }
-   }  
+   }
+   //City
+   if(!fields["city"]){
+    formIsValid = false;
+    errors["city"] = "Cannot be empty";
+ }
+
+ else if(typeof fields["city"] !== "undefined"){
+    if(!fields["city"].match(/^[a-zA-Z]+$/)){
+       formIsValid = false;
+       errors["city"] = "Only letters";
+    }        
+ }
+ //zip
+ if(!fields["zip"]){
+  formIsValid = false;
+  errors["zip"] = "Cannot be empty";
+}  
 
    this.setState({errors: errors});
-  // console.log(errors)
    return formIsValid;
 }
 handleChange(field, e){         
@@ -188,8 +204,6 @@ contactSubmit(e){
         }
     }
 }
-
-  //<h1 style={{margin:"15px"}}>Person details</h1>
   render() {
     let array = [ "1", "2", "3", "4", "5", "6", "7","8","9","10","11","12"];
     let images = array.map(image => {
@@ -293,9 +307,11 @@ contactSubmit(e){
 <div  style={{margin:"25px",textAlign:"center"}}>
 <button className="btn btn-danger justify-content-md-center btn-lg" onClick={this.handleSubmitClear} syle={{margin: "30px" ,display: "block"}}>Clear Cart</button> 
 </div>
-<div  className="col-lg-6">
+<div className="container" style={{border:"dotted", marginBottom:"20px"}}>
 <h2 >Shipping Address</h2>
-<form onSubmit={this.handleSubmit} >
+<div className="container">
+      <div className="row justify-content-center">
+<div  className="col-lg-6">
 <div className="form-group">
     <label >First Name</label>
     <input ref="name" onChange={this.handleChange.bind(this, "name")} value={this.state.fields["name"]} type="fname" className="form-control" id="exampleInputfName" aria-describedby="emailHelp" placeholder="Enter First Name"/>
@@ -308,30 +324,47 @@ contactSubmit(e){
     <span className="error" style={{color:"red"}}>{this.state.errors["lname"]}</span>
     <br/>
     </div>
-	<div className="form-group">
-    <label >Adress Line</label>
-    <input ref="address" onChange={this.handleChange.bind(this, "address")} value={this.state.fields["addres"]} type="address" className="form-control" id="exampleAddress" aria-describedby="emailHelp" placeholder="Enter Address"/>
-    <span className="error" style={{color:"red"}}>{this.state.errors["address"]}</span>
-    <br/>
-    </div>
-  <div className="form-group">
+    <div className="form-group">
     <label >Email address</label>
     <input ref="email" onChange={this.handleChange.bind(this, "email")} value={this.state.fields["email"]} type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"/>
     <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
     <span className="error" style={{color:"red"}}>{this.state.errors["email"]}</span>
     <br/>
   </div>
+  </div>
+  <div  className="col-lg-6">
+	<div className="form-group">
+    <label >Adress Line</label>
+    <input ref="address" onChange={this.handleChange.bind(this, "address")} value={this.state.fields["addres"]} type="address" className="form-control" id="exampleAddress" aria-describedby="emailHelp" placeholder="Street address, Company Name, c/o"/>
+    <span className="error" style={{color:"red"}}>{this.state.errors["address"]}</span>
+    <br/>
+    </div>
+    <div className="form-group row">
+    <div className="col">
+    <label >City</label>
+    <input ref="city" onChange={this.handleChange.bind(this, "city")} value={this.state.fields["city"]} type="city" className="form-control" id="exampleCity" aria-describedby="citylHelp" placeholder="eg. Las Vegas"/>
+    <span className="error" style={{color:"red"}}>{this.state.errors["city"]}</span>
+    </div>
+    <div className="col">
+    <label >Zip</label>
+    <input ref="zip" onChange={this.handleChange.bind(this, "zip")} value={this.state.fields["zip"]} type="number" className="form-control" id="exampleZip" aria-describedby="ziplHelp" placeholder="eg. 89101"/>
+    <span className="error" style={{color:"red"}}>{this.state.errors["zip"]}</span>
+    </div>
+    </div>
+    <br/>
   <div className="form-group">
     <label >Phone Number:</label>
     <input ref="phone" onChange={this.handleChange.bind(this, "phone")} value={this.state.fields["phone"]} type="number" className="form-control" id="exampleInputPhone" placeholder="Phone Number"/>
     <span className="error" style={{color:"red"}}>{this.state.errors["phone"]}</span>
     <br/>  
   </div>
-  <h4> <b>Order total: {this.state.total+this.state.shipping}$</b></h4>
+   </div>  
+    </div>
+    </div>
+    </div>
+    <h4> <b>Order total: {this.state.total+this.state.shipping}$</b></h4>
   <small id="placeHelp" className="form-text text-muted">By placing your order, you agree to yummi pizza’s privacy notice and conditions of use.</small>
-    <button type="button" disabled={this.state.total==0} style={{marginBottom:"20px",marginTop:"10px"}} className="btn btn-success" onClick={this.contactSubmit.bind(this)}>Place Your Order</button>            
-</form>   
-    </div>   
+    <button type="button" disabled={this.state.total==0} style={{marginBottom:"20px",marginTop:"10px"}} className="btn btn-success" onClick={this.contactSubmit.bind(this)}>Place Your Order</button> 
     </div>
     );
   }
