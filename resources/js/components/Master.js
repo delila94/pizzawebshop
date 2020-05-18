@@ -39,7 +39,6 @@ parentFunction(data_from_child){
    </div>
   </div>
 </nav>
- 
           <div>
               {this.props.children}
           </div>   

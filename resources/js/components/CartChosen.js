@@ -216,7 +216,7 @@ contactSubmit(e){
     <h2 style={{margin:"20px"}}>Review your order:</h2>
     
 </div>
-<div className="text-center justify-content-cente">
+<div className="justify-content-center">
 <div className="row ">
              {this.state.products.map((data,mykey)=>
           <div className="col-lg 6 col-md-6 col-sm-12 col-xs-12"  key={mykey}>
@@ -229,12 +229,11 @@ contactSubmit(e){
   </div>
   <ul className="list-group list-group-flush">
 <li className="list-group-item">Price: {data.price}$({Math.floor(data.price*0.92 * 100) / 100}€)</li>
-             <li className="list-group-item">Total Qty: <b>{data.quantity}</b> 
+<li className="list-group-item">Change Qty: <button className="btn" type="button" onClick={(e)=> this.updateCart(data.id,1)}><i style={{fontSize:"30px"}} className="material-icons">add_circle_outline</i></button>
+             <b>{data.quantity}</b> 
+       <button className="btn" disabled={data.quantity==1} type="button" onClick={(e)=> this.updateCart(data.id,-1)}><i style={{fontSize:"30px"}} className="material-icons">remove_circle_outline</i></button>    
       </li>
       <li className="list-group-item">Total: <b>{data.quantity*data.price}$({Math.floor(data.quantity*data.price*0.92 * 100) / 100 }€)</b>
-      </li>
-    <li className="list-group-item">Update: <button  style={{margin: "0px"}} className="btn" type="button" onClick={(e)=> this.updateCart(data.id,1)}><i style={{fontSize:"30px"}} className="material-icons">add_circle_outline</i></button>
-       <button  style={{marginLeft: "0px"}} className="btn" disabled={data.quantity==1} type="button" onClick={(e)=> this.updateCart(data.id,-1)}><i style={{fontSize:"30px"}} className="material-icons">remove_circle_outline</i></button>
       </li>
   </ul>
   <div className="card-body row justify-content-center">
