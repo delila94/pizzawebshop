@@ -1,30 +1,15 @@
 import React, {Component} from 'react';
-import { Router, Route, Link } from 'react-router';
-import TableRow from './TableRow';
 class Master extends Component {
-  constructor(props){
-    super(props);
-    this.state={
-        value_key:""
-    }
-}
-parentFunction(data_from_child){
-  this.setState({value_key:data_from_child});
-}
-//<TableRow functionCallFromParent={this.parentFunction.bind(this)}/>
-//<h1>ddd{this.state.value_key}</h1>
 
   render(){
     return (
       <div >
    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></link>
-
 <nav className="navbar navbar-expand-lg navbar-light" style={{color:"white" ,backgroundColor:"#313184"}}>
 <a className="navbar-brand" style={{color:"white"}} href="/">Pizza Yummi</a>
   <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span className="navbar-toggler-icon"></span>
   </button>
-
   <div className="collapse navbar-collapse" id="navbarSupportedContent">
     <ul className="navbar-nav mr-auto">
       <li className="nav-item active">

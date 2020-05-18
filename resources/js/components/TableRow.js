@@ -43,10 +43,7 @@ class TableRow extends Component {
       id:id})
     
      // this.setState({counter:this.state.counter+parseInt(this.state.qty)});
-      //this.setState({counter:this.state.qty},console.log(this.state.qty));
     // this.setState({counter:this.state.counter+parseInt(this.state.qty)}, ()=>{this.props.functionCallFromParent(this.state.counter)});
-   // this.setState({show: !this.state.show});
-    //} 
     if(this.state.qty==1) {this.setState({qtyDisp:'1'});}
     this.setState({qty:'1'});
     this.handleModal(id);
@@ -73,13 +70,6 @@ handleModal(id) {
 handleModalClose() {
   this.setState({show: !this.state.show});  
 }
-childFunction(){
-  
-  this.props.functionCallFromParent(this.state.counter);
-}
-/*      <div>   
-                <button onClick={this.childFunction.bind(this)}>Click</button>
-            </div>*/
   render() {
     if(this.state.isLoading){
       return(

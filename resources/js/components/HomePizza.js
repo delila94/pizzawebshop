@@ -3,11 +3,6 @@ import Carousel from 'react-bootstrap/Carousel'
 class HomePizza extends Component {
   
   render(){
-    /*const [index, setIndex] = useState(0);
-
-    const handleSelect = (selectedIndex, e) => {
-      setIndex(selectedIndex);
-    };*/
     return (
     
       <Carousel>
