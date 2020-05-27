@@ -38,7 +38,8 @@ componentDidMount(){
             name: 'Guest',
             email: 'Guest'
         })
-    }   })  
+    }
+  })  
    // let count = localStorage.getItem('counter') //is user loggedIn true false boolean
    // this.setState({
    //     counter: count },()=>{console.log("od countera",this.state.counter)})
