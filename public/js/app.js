@@ -89913,7 +89913,7 @@ var NavBar = /*#__PURE__*/function (_Component) {
         href: "#/cartChosen"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         style: {
-          fontSize: "45px"
+          fontSize: "28px"
         },
         className: "material-icons"
       }, "shopping_cart")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
