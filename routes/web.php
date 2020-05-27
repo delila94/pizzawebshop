@@ -27,15 +27,18 @@ Route::get('/', function () {
 Route::get('product', function(){ return App\Product::all(); });
 Route::post('add', 'cartController@add');
 Route::post('total', 'cartController@total');
-Route::get('total', function(){  
-    return Cart:: getTotal();
-});
    Route::get('cart', 'cartController@myCart');
-   Route::get('myCart','cartController@myCartR');
-   Route::get('clear','cartController@clearCart');
+   Route::post('myCart','cartController@myCartR');
+   Route::post('clear','cartController@clearCart');
    Route::post('remove','cartController@removeCart');
    Route::post('update', 'cartController@updateCart');
    Route::get('remove','cartController@removeCart');
+   Route::post('register', 'Auth\RegisterController@register');
+   Route::post('login', 'UserController@login');
+   Route::post('logout', 'UserController@logout');
+  //Route::post('login', 'UserController@login');
+ //  Route::get('profile', 'UserController@getAuthenticatedUser');
+
 Auth::routes();
 
 

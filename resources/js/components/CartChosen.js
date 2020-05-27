@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { Link, hashHistory } from 'react-router';
 import {Button, Modal} from 'react-bootstrap';
+import NavBar from './NavBar';
+import FootBar from './FootBar';
 
 
 class CartChosen extends Component {
   constructor(props) {
       super(props);
-      this.state={products:[],total:'',qty:'',shipping:0,totalShip:'0',show: false,showEmpty:false, fields:{name: '',lname: '',address: '',email: '',phone:'',city:'',zip:''}, errors:{}}
+      this.state={products:[],total:'',email:'',qty:'',shipping:0,totalShip:'0',show: false,showEmpty:false, fields:{name: '',lname: '',address: '',email: '',phone:'',city:'',zip:''}, errors:{}}
       this.handleSubmitClear = this.handleSubmitClear.bind(this);
       this.handleSubmitRemove = this.handleSubmitRemove.bind(this);
       this.updateCart = this.updateCart.bind(this);
@@ -20,8 +22,11 @@ handleSubmitClear(e)
     if(this.state.total!=0)
     {
       this.setState({shipping:0});
-      axios.get('clear') ;
-      window.location.reload();
+      let criticalData = localStorage.getItem('email')
+    this.setState({
+        email: criticalData}, ()=>{
+      axios.post('clear', {email:this.state.email}) ;
+      window.location.reload();})
       
     }
     else
@@ -39,38 +44,47 @@ handleModalEmpty() {
 }
 componentDidMount() 
 {
-  axios.get('myCart') 
-  .then(response => {
+  let criticalData = localStorage.getItem('email')
+    this.setState({
+        email: criticalData}, ()=>{ axios.post('myCart',{email:this.state.email}) 
+        .then(response => {
+      
+          this.setState({ products: Object.values(response.data)});
+      
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
+      
+      } )
+       criticalData = localStorage.getItem('email')
+    this.setState({
+        token: criticalData}, ()=>{
+        axios.post('total',{email:this.state.email}) 
+        .then(responseT => {
+           
+          this.setState({ total: responseT.data},()=>{if(this.state.total==0){
+            this.setState({shipping:0});
+          } else{
+            this.setState({shipping:10}); 
+          }
+          } );
+        }) 
+        .catch(function (error) {
+          console.log(error);
+        })
+      } )
+ 
 
-    this.setState({ products: Object.values(response.data)});
-
-  })
-  .catch(function (error) {
-    console.log(error);
-  })
-
-  axios.get('total') 
-  .then(responseT => {
-     
-    this.setState({ total: responseT.data},()=>{if(this.state.total==0){
-      this.setState({shipping:0});
-    } else{
-      this.setState({shipping:10}); 
-    }
-    } );
-  }) 
-  .catch(function (error) {
-    console.log(error);
-  })
  
 }
 updateCart(id,qty) 
 {
 
-    axios.post('update',{qty:qty,id:id})
+    axios.post('update',{qty:qty,id:id,email:this.state.email})
     .then(res=> {
     // console.log(res.data)
-    this.setState({products: Object.values(res.data) },()=>{axios.get('total') 
+    this.setState({products: Object.values(res.data) },()=>{axios.post('total',{email:this.state.email}) 
     .then(responseT => {
     this.setState({ total: responseT.data});
     })}
@@ -81,10 +95,10 @@ updateCart(id,qty)
   }
 handleSubmitRemove(id)
  {
-  axios.post('remove',{id:id})
+  axios.post('remove',{id:id,email:this.state.email})
     .then(res=> {
         
-        this.setState({products: Object.values(res.data) }, ()=>{axios.get('total') 
+        this.setState({products: Object.values(res.data) }, ()=>{axios.post('total', {email:this.state.email}) 
         .then(responseT => {
         this.setState({ total: responseT.data},()=>{if(this.state.total==0){
           this.setState({shipping:0});
@@ -210,6 +224,9 @@ contactSubmit(e){
     return <img key={image} src={require(`./${image}.png`)} style={{width:"70%", height:"auto"}} alt="" className="img-responsive" />
     });
     return (
+      <div>
+        <NavBar/>
+     
  <div className="container">
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></link>
     <Modal id="#clearCart" show={this.state.show} onHide={()=>{this.handleModal()}}>
@@ -365,6 +382,8 @@ contactSubmit(e){
     <h4> <b>Order total: {this.state.total+this.state.shipping}$</b></h4>
   <small id="placeHelp" className="form-text text-muted">By placing your order, you agree to yummi pizza’s privacy notice and conditions of use.</small>
     <button type="button" disabled={this.state.total==0} style={{marginBottom:"20px",marginTop:"10px"}} className="btn btn-success" onClick={this.contactSubmit.bind(this)}>Place Your Order</button> 
+    </div>
+    <FootBar/>
     </div>
     );
   }

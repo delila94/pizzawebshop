@@ -2,20 +2,22 @@ import React, { Component } from 'react';
 import { Link, hashHistory } from 'react-router';
 import axios from 'axios';
 import {Button, ButtonToolbar, Modal} from 'react-bootstrap';
+import NavBar from './NavBar';
+import FootBar from './FootBar';
 
 class TableRow extends Component {
   constructor(props) {
       super(props);
       super();
      
-      this.state={qty:'1',qtyDisp:'1',isLoading:true,Oneproduct:[],counter:0,products:[],id:'',cart:[], show: false}
+      this.state={qty:'1',qtyDisp:'1',isLoading:true,email:'',Oneproduct:[],counter:0,products:[],id:'',cart:[], show: false}
       this.handleSubmit3 = this.handleSubmit3.bind(this);
       this.qty = this.qty.bind(this);
       this.id = this.id.bind(this);
       this.handleGo = this.handleGo.bind(this);
       this.handleModal = this.handleModal.bind(this);
       this.handleModalClose = this.handleModalClose.bind(this);
-
+      
   }
 
   handleGo(e)
@@ -40,9 +42,10 @@ class TableRow extends Component {
    {
     e.preventDefault();
     axios.post('add',{qty:this.state.qty,
-      id:id})
+      id:id,email:this.state.email})
     
-     // this.setState({counter:this.state.counter+parseInt(this.state.qty)});
+      this.setState({counter:this.state.counter+parseInt(this.state.qty)},()=>{ localStorage.setItem('counter',this.state.counter+parseInt(this.state.qty))});
+     
     // this.setState({counter:this.state.counter+parseInt(this.state.qty)}, ()=>{this.props.functionCallFromParent(this.state.counter)});
     if(this.state.qty==1) {this.setState({qtyDisp:'1'});}
     this.setState({qty:'1'});
@@ -58,7 +61,12 @@ componentDidMount()
   .catch(function (error) {
     console.log(error);
   })
-  setTimeout(() => this.setState({isLoading: false}), 1000)
+  setTimeout(() => this.setState({isLoading: false}), 1000);
+  let criticalData = localStorage.getItem('email')
+    this.setState({
+        email: criticalData
+    })
+
 }
 handleModal(id) {
   this.setState({show: !this.state.show});
@@ -83,6 +91,7 @@ handleModalClose() {
     return <img key={image} src={require(`./${image}.png`)} style={{width:"70%", height:"auto"}} alt="" className="img-responsive" />
     });
     return (
+      <div><NavBar/>
   <div className="container">
        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></link>
        <Modal id="#addedToCart" show={this.state.show} onHide={()=>{this.handleModalClose()}}>
@@ -96,7 +105,7 @@ handleModalClose() {
           </Modal.Footer>
         </Modal>
         
-      <h2 style={{margin:"10px"}}>Menu:</h2>
+    <h2 style={{margin:"10px"}}>Menu:</h2>
          <div className="row justify-content-center">
              {this.state.products.map((data,mykey)=>
           <div className="col-lg 6 col-md-6 col-sm-12 col-xs-12"  key={mykey}>
@@ -134,6 +143,8 @@ handleModalClose() {
          </div>   
             )}
         </div>  
+   </div>
+   <FootBar/>
    </div>
     );
   }

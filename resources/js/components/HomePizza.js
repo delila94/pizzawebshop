@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import Carousel from 'react-bootstrap/Carousel'
+import NavBar from './NavBar';
+import FootBar from './FootBar';
 class HomePizza extends Component {
   
   render(){
     return (
-    
+    <div><NavBar/>
       <Carousel>
       <Carousel.Item>
         <img
@@ -42,6 +44,8 @@ class HomePizza extends Component {
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>
+    <FootBar/>
+    </div>
     )
   }
 }

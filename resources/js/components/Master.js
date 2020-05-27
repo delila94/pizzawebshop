@@ -1,6 +1,14 @@
 import React, {Component} from 'react';
 class Master extends Component {
-
+  constructor(props) {
+    super(props);
+    super();
+   
+  this.state = {
+    isOpen: false,
+    isLoggedIn:false
+  };
+}
   render(){
     return (
       <div >
@@ -21,6 +29,10 @@ class Master extends Component {
     </ul>
     <div className="form-inline my-2 my-lg-0">
   <a className="nav-item nav-link" style={{color:"white"}} href="#/cartChosen"><i style={{fontSize:"45px"}} className="material-icons">shopping_cart</i></a>
+  <a className="nav-link" style={{color:"white"}} href="/#/register">Register <span className="sr-only">(current)</span></a>
+  <a className="nav-link" style={{color:"white"}} href="/#/login">Login <span className="sr-only">(current)</span></a>
+  <a className="nav-link" style={{color:"white"}} href="/logout">Log Out <span className="sr-only">(current)</span></a>
+  
    </div>
   </div>
 </nav>
