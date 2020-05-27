@@ -89916,7 +89916,7 @@ var NavBar = /*#__PURE__*/function (_Component) {
           fontSize: "45px"
         },
         className: "material-icons"
-      }, "shopping_cart"), "(", this.state.counter, ")"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      }, "shopping_cart")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         className: "nav-link",
         style: {
           color: "white"

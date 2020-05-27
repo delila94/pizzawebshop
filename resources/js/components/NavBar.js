@@ -89,7 +89,7 @@ handleModalClose() {
       </li>
     </ul>
     <div className="form-inline my-2 my-lg-0">
-  <a className="nav-item nav-link" style={{color:"white"}} href="#/cartChosen"><i style={{fontSize:"45px"}} className="material-icons">shopping_cart</i>({this.state.counter})</a>
+  <a className="nav-item nav-link" style={{color:"white"}} href="#/cartChosen"><i style={{fontSize:"45px"}} className="material-icons">shopping_cart</i></a>
   <a className="nav-link" style={{color:"white"}} href="/#/register">Register <span className="sr-only">(current)</span></a>              
                 { this.state.login
                     ? <div className="form-inline my-2 my-lg-0">
